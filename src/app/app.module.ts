@@ -2,20 +2,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { NoteComponent } from './note/note.component';
+import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
+import { NotesComponent } from './notes/notes.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const appRoutes: Routes = [
-  { path: 'test', component: AppComponent},
-  //{ path: 'login', component: LoginComponent}, //login page
-  //{ path: 'notes', component: NotesComponent}, //landing page / note list
-  //{ path: 'note/:id', component: NoteComponent}, //expanded single note view
-  //{ path: '', redirectTo: './notes', pathMatch: 'full'}, //take user to notes if URL route is empty
-  //{ path: '**', component: PageNotFoundComponent }//catch-all for URL errors
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'note/:id', component: NoteComponent },
+  { path: 'notes', component: NotesComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: '', redirectTo: './home', pathMatch: 'full'}, //take user to notes if URL route is empty
+  { path: '**', component: PageNotFoundComponent }//catch-all for URL errors
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    NoteComponent,
+    SignupComponent,
+    HomeComponent,
+    NotesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(
