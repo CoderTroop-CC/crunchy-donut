@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'note', component: NoteComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
   { path: 'signup', component: SignupComponent },
+  { path: '', redirectTo: '/home' },
 ];
 
 @NgModule({
