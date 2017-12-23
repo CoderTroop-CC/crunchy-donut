@@ -1,11 +1,14 @@
 <h1>{{title}}</h1>
 <nav>
-  <a routerLink="/home">Home component</a>
-  <a routerLink="/login">Login component</a>
-  <a routerLink="/note">Note component</a>
-  <a routerLink="/notes">Notes component</a>
-  <a routerLink="/page-not-found">Page Not Found component</a>
-  <a routerLink="/signup">Signup component</a>
+  <ul>
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/login">Login</a></li>
+    <li><a routerLink="/note">Note</a></li>
+    <li><a routerLink="/notes">Notes</a></li>
+    <li><a routerLink="/page-not-found">Page Not Found</a></li>
+    <li><a routerLink="/signup">Signup</a></li>
+  </ul>
 </nav>
+<hr>
 <router-outlet></router-outlet>
 <!--<app-messages></app-messages>-->

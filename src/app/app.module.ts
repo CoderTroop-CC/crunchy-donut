@@ -9,12 +9,13 @@ import { HomeComponent } from './home/home.component';
 import { NotesComponent } from './notes/notes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { Database } from './database-config';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'note/:id', component: NoteComponent },
+  { path: 'note', component: NoteComponent },
   { path: 'notes', component: NotesComponent },
   { path: 'signup', component: SignupComponent },
   { path: '', redirectTo: './home', pathMatch: 'full'}, //take user to notes if URL route is empty

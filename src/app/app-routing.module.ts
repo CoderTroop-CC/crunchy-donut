@@ -11,10 +11,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'notes', component: NotesComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'note', component: NoteComponent },
+  { path: 'note/id:', component: NoteComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
   { path: 'signup', component: SignupComponent },
-  { path: '', redirectTo: '/home' },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
 ];
 
 @NgModule({
