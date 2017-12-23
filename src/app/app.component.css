@@ -1,3 +1,10 @@
 ul {
-    list-style-type: upper-roman;
+    list-style-type: none;
+}
+ul > li {
+    display: inline;
+    padding: 8px;
+}
+a {
+    text-decoration: none;
 }
