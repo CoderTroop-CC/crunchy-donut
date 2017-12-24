@@ -5,3 +5,13 @@
     <li>Possibly link to other notes</li>
     <li>Tags? - that would let the user search for notes by tag in the home view</li>
 </ul>
+
+<h2>My Notes</h2>
+<ul class="notes">
+  <li *ngFor="let note of notes">
+      <h3>{{note.title}}</h3>
+      {{note.content}}
+      <br>
+      <p>Owner: {{note.owner}}</p>
+  </li>
+</ul>
