@@ -1,14 +1,4 @@
-<h2>My Notes</h2>
-
-<div>
-  <label>Note name:
-    <input #noteName />
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(noteName.value); noteName.value=''">
-    add
-  </button>
-</div>
+<h2>Notes</h2>
 
 <ul class="notes">
   <li *ngFor="let note of notes">
@@ -19,3 +9,5 @@
     (click)="delete(note)">Delete</button>
   </li>
 </ul>
+
+<app-note-search></app-note-search>
