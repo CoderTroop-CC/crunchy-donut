@@ -1,0 +1,13 @@
+<div id="search-component">
+  <h4>Note Search</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let note of notes$ | async" >
+      <a routerLink="/detail/{{note.id}}">
+        {{note.name}}
+      </a>
+    </li>
+  </ul>
+</div>
