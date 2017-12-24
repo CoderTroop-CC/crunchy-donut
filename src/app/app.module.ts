@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { NoteService } from './note.service';
+import { MessagesComponent } from './messages/messages.component';
+import { MessageService } from './message.service';
 
 
 const appRoutes: Routes = [
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     SignupComponent,
     HomeComponent,
     NotesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MessagesComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -54,7 +57,7 @@ HttpClientInMemoryWebApiModule.forRoot(
   InMemoryDataService, { dataEncapsulation: false }
 )
   ],
-  providers: [NoteService],
+  providers: [NoteService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
