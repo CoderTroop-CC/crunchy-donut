@@ -1,7 +1,21 @@
-<h2>Notes component</h2>
-<p>This would be the 'detail' view for the individual notes, this would be access by id/* in the URL</p>
-<ul>
-    <li>Editable</li>
-    <li>Possibly link to other notes</li>
-    <li>Tags? - that would let the user search for notes by tag in the home view</li>
+<h2>My Notes</h2>
+
+<div>
+  <label>Note name:
+    <input #noteName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(noteName.value); noteName.value=''">
+    add
+  </button>
+</div>
+
+<ul class="notes">
+  <li *ngFor="let note of notes">
+    <a routerLink="/detail/{{note.id}}">
+      <h3>{{note.name}}</h3>
+    </a>
+    <button class="delete" title="delete note"
+    (click)="delete(note)">Delete</button>
+  </li>
 </ul>

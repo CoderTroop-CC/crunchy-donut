@@ -1,0 +1,11 @@
+<div *ngIf="note">
+  <h2>{{ note.name | uppercase }}</h2>
+  
+  <div>
+    <label>Content:
+      <input [(ngModel)]="note.content" placeholder="note content"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>
