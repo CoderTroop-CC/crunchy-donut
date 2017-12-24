@@ -1,17 +1,11 @@
 <h2>Notes component</h2>
-<p>This would be the 'detail' view for the individual notes, this would be access by id/* in the URL</p>
-<ul>
-    <li>Editable</li>
-    <li>Possibly link to other notes</li>
-    <li>Tags? - that would let the user search for notes by tag in the home view</li>
-</ul>
 
 <h2>My Notes</h2>
 <ul class="notes">
-  <li *ngFor="let note of notes">
-      <h3>{{note.title}}</h3>
-      {{note.content}}
-      <br>
-      <p>Owner: {{note.owner}}</p>
-  </li>
+    <li *ngFor="let note of notes">
+        <h3>{{note.title}}</h3>
+        {{note.content}}
+        <br>
+        <p>Owner: {{note.owner}}</p>
+    </li>
 </ul>
