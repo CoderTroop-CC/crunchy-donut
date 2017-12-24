@@ -1,6 +1,5 @@
 export class Note {
-    id: number;
-    owner: string
-    title: string;
-    content: string;
+  id: number;
+  name: string;
+  content: string;
 }

@@ -1,11 +1,21 @@
-<h2>Notes component</h2>
-
 <h2>My Notes</h2>
+
+<div>
+  <label>Note name:
+    <input #noteName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(noteName.value); noteName.value=''">
+    add
+  </button>
+</div>
+
 <ul class="notes">
-    <li *ngFor="let note of notes">
-        <h3>{{note.title}}</h3>
-        {{note.content}}
-        <br>
-        <p>Owner: {{note.owner}}</p>
-    </li>
+  <li *ngFor="let note of notes">
+    <a routerLink="/detail/{{note.id}}">
+      <h3>{{note.name}}</h3>
+    </a>
+    <button class="delete" title="delete note"
+    (click)="delete(note)">Delete</button>
+  </li>
 </ul>
