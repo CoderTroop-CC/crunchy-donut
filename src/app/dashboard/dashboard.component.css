@@ -1,0 +1,23 @@
+.note-wrapper-outer {
+    display: flex;
+    justify-content: space-around;
+}
+
+h4 {
+    background-color: steelblue;
+    border-radius: 8px;
+    padding: 8px;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    background-color: lightgray;
+    border-radius: 8px;
+    margin: .5em;
+    padding: 8px;
+}
+
+a p {
+    color: black;
+}

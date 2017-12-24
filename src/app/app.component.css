@@ -1,10 +1,21 @@
 ul {
     list-style-type: none;
 }
-ul > li {
-    display: inline;
-    padding: 8px;
+
+nav {
+    display: flex;
+    justify-content: flex-end;
 }
-a {
+
+nav > a {
+    background-color: steelblue;
+    border-radius: 8px;
+    padding: 8px;
+    color: white;
     text-decoration: none;
+    margin: .5em;
+}
+
+h1 {
+    text-align: center;
 }
