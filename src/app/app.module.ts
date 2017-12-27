@@ -14,6 +14,7 @@ import { NoteDetailComponent }  from './note-detail/note-detail.component';
 import { NotesComponent }      from './notes/notes.component';
 import { NoteSearchComponent }  from './note-search/note-search.component';
 import { NoteService }          from './note.service';
+import { NoteAddComponent } from './note-add/note-add.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { NoteService }          from './note.service';
     DashboardComponent,
     NotesComponent,
     NoteDetailComponent,
-    NoteSearchComponent
+    NoteSearchComponent,
+    NoteAddComponent
   ],
   providers: [ NoteService ],
   bootstrap: [ AppComponent ]
