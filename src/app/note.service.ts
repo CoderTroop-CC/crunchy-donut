@@ -24,10 +24,9 @@ export class NoteService {
   /** GET notes from the server */
   getNotes (): Observable<Note[]> {
     return this.http.get<Note[]>(this.notesUrl)
-      .pipe(
-        tap(notes => this.log(`fetched notes`)),
-        catchError(this.handleError('getNotes', []))
-      );
+    .pipe(
+      catchError(this.handleError('getNotes', []))
+    );
   }
 
   /** GET note by id. Return `undefined` when id not found */
@@ -69,6 +68,7 @@ export class NoteService {
 
   /** POST: add a new note to the server */
   addNote (note: Note): Observable<Note> {
+    console.log("%c addnote() called", "color: blue");
     return this.http.post<Note>(this.notesUrl, note, httpOptions).pipe(
       tap((note: Note) => this.log(`added note w/ name=${note.name} and content=${note.content}`)),
       catchError(this.handleError<Note>('addNote'))

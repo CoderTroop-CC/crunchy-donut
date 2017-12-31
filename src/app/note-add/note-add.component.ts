@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Note } from '../note';
 import { NoteService } from '../note.service';
 
+
 @Component({
   selector: 'app-note-add',
   templateUrl: './note-add.component.html',
@@ -16,10 +17,12 @@ export class NoteAddComponent implements OnInit {
 
   constructor(private noteService: NoteService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+   }
 
   add(name: string, content: string): void {
-    console.log('add() called ' + 'with name as ' + name + ' and content as ' + content);
+    console.log('%c add() called ' + "with name as '" + name + "' and content as '" + content + "'", 'color: green');
+    
     name = name.trim();
     content = content.trim();
 
