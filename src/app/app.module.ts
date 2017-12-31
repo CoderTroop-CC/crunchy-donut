@@ -11,10 +11,11 @@ import { AppRoutingModule }     from './app-routing.module';
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { NoteDetailComponent }  from './note-detail/note-detail.component';
-import { NotesComponent }      from './notes/notes.component';
 import { NoteSearchComponent }  from './note-search/note-search.component';
 import { NoteService }          from './note.service';
-import { NoteAddComponent } from './note-add/note-add.component';
+import { MessageService }       from './message.service';
+import { MessagesComponent }    from './messages/messages.component';
+import { NoteAddComponent }     from './note-add/note-add.component'
 
 @NgModule({
   imports: [
@@ -33,12 +34,12 @@ import { NoteAddComponent } from './note-add/note-add.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    NotesComponent,
     NoteDetailComponent,
+    MessagesComponent,
     NoteSearchComponent,
     NoteAddComponent
   ],
-  providers: [ NoteService ],
+  providers: [ NoteService, MessageService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
