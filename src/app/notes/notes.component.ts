@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Note } from '../note';
 import { NoteService } from '../note.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-notes',
@@ -11,21 +12,21 @@ import { NoteService } from '../note.service';
 export class NotesComponent implements OnInit {
   notes: Note[];
 
-  constructor(private noteService: NoteService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getNotes();
   }
 
-  getNotes(): void {
-    this.noteService.getNotes()
+  getNotes() {
+    this.dataService.getNotes()
     .subscribe(notes => this.notes = notes);
   }
 
-  add(name: string): void {
+  /*add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.noteService.addNote({ name } as Note)
+    this.dataService.addNote({ name } as Note)
       .subscribe(note => {
         this.notes.push(note);
       });
@@ -33,7 +34,7 @@ export class NotesComponent implements OnInit {
 
   delete(note: Note): void {
     this.notes = this.notes.filter(h => h !== note);
-    this.noteService.deleteNote(note).subscribe();
-  }
+    this.dataService.deleteNote(note).subscribe();
+  }*/
 
 }

@@ -11,10 +11,11 @@ import { AppRoutingModule }     from './app-routing.module';
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { NoteDetailComponent }  from './note-detail/note-detail.component';
-import { NotesComponent }      from './notes/notes.component';
+import { NotesComponent }       from './notes/notes.component';
 import { NoteSearchComponent }  from './note-search/note-search.component';
 import { NoteService }          from './note.service';
-import { NoteAddComponent } from './note-add/note-add.component';
+import { NoteAddComponent }     from './note-add/note-add.component';
+import { DataService }          from './data.service';
 
 @NgModule({
   imports: [
@@ -26,9 +27,9 @@ import { NoteAddComponent } from './note-add/note-add.component';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    //HttpClientInMemoryWebApiModule.forRoot(
+      //InMemoryDataService, { dataEncapsulation: false }
+    //)
   ],
   declarations: [
     AppComponent,
