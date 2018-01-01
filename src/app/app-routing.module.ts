@@ -3,15 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { NoteDetailComponent }  from './note-detail/note-detail.component';
-import { NoteAddComponent } from './note-add/note-add.component';
-import { NoteSearchComponent } from './note-search/note-search.component';
+import { NoteAddComponent }     from './note-add/note-add.component';
+import { NoteSearchComponent }  from './note-search/note-search.component';
+
+//login and authentication
+import { LoginComponent }       from './login/login.component';
+import { RegisterComponent }    from './register/register.component';
+import { AuthGuard }            from './auth-guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'detail/:id', component: NoteDetailComponent },
   { path: 'addNote', component: NoteAddComponent },
-  { path: 'noteSearch', component: NoteSearchComponent }
+  { path: 'noteSearch', component: NoteSearchComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
