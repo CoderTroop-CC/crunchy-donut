@@ -32,6 +32,7 @@ import { JwtInterceptor } from './jwt-interceptor';
 import { AlertService } from './alert.service';
 import { UserService } from './user.service';
 import { AuthenticationService } from './authentication.service';
+import { Router } from '@angular/router/src/router';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { AuthenticationService } from './authentication.service';
     AlertService,
     AuthenticationService,
     UserService,
+    Router,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
