@@ -1,6 +1,5 @@
-<h2>Dashboard</h2>
 <div class="note-wrapper-outer">
-  <a *ngFor="let note of notes" routerLink="/detail/{{note.id}}">
+  <a class="animated fadeInUpBig" *ngFor="let note of notes" routerLink="/detail/{{note.id}}">
     <div class="note-wrapper-inner">
       <h4>{{note.name}}</h4>
       <p>{{note.content.substring(0,50)}}...</p>

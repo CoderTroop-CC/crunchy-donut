@@ -1,0 +1,25 @@
+p.content_p {
+    min-height: 5em;
+}
+
+p.name_p {
+    min-height: 1em;
+    min-width: 30vw;
+    max-width: 80vw
+}
+
+p.content_p, p.name_p {
+    border-radius: 8px;
+    display: inline-block;
+    background-color: white;
+    overflow-wrap: break-word;
+    min-width: 30vw;
+    max-width: 80vw;
+    opacity: .6;
+    font-weight: bold;
+}
+
+button {
+    font-size: 1em;
+    font-weight: bold;
+}

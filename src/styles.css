@@ -1,9 +1,39 @@
-/* Master Styles */
+/* Global Styles */
 body {
-    font-family: 'Ubuntu', sans-serif;
+    /*font-family: 'Ubuntu', sans-serif;*/
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+    font-size: 1.5em;
     box-sizing: border-box;
+    background-image: url("./assets/images/fountain_pen_notebook.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 footer {
     position: fixed;
     bottom: 0;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav > a {
+    margin: .25em;
+}
+
+h1 {
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Short Stack', cursive;
 }
