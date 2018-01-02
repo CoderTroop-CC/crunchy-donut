@@ -1,14 +1,16 @@
 <h2>Add Note</h2>
 
-<div>
-  <form name="newNote">
-    <div class="form-group">
-      <label>Note Title</label>
-      <input type="text" class="form-control" name="title">
-      <label>Note Information</label>
-      <input type="text" class="form-control" name="info">
-      <button onclick="save()">Save</button>
-      <button onclick="dismiss">Cancel</button>
-    </div>
-  </form>
-</div>
+<h3>
+  <label for="name">Name:
+    <input type="text" name="name" #noteName>
+  </label>
+</h3>
+
+<label for="content">
+  <textarea #noteContent name="content" id="" cols="30" rows="10"></textarea>
+</label>
+
+<!-- (click) passes input value to add() and then clears the input -->
+<button (click)="add(noteName.value, noteContent.value); noteName.value=''; noteContent.value=''">
+  add
+</button>
