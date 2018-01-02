@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+const mongoose = require('mongoose');
 
 // Connect
-var uri = 'mongodb://dbuser:dbuser1@ds141786.mlab.com:41786/ranotes';
+var url = 'mongodb://dbuser:dbuser1@ds141786.mlab.com:41786/ranotes';
 
 const connection = (closure) => {
-    return MongoClient.connect(uri, (err, db) => {
+    return MongoClient.connect(url, (err, db) => {
         if (err) throw err;
 
         closure(db);
@@ -28,15 +29,32 @@ let response = {
     message: null
 };
 
-// Get users
+// Get notes
 router.get('/notes', (req, res) => {
     connection((db) => {
         db.collection('notes')
             .find()
             .toArray()
             .then((notes) => {
-                response.data =notes;
-                res.json(response);
+                response.data = notes;
+                res.json(notes);
+                console.log(notes);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+// Get users
+router.get('/users', (req, res) => {
+    connection((db) => {
+        db.collection('users')
+            .find()
+            .toArray()
+            .then((users) => {
+                response.data = users;
+                res.json(users);
+                console.log(users);
             })
             .catch((err) => {
                 sendError(err, res);
