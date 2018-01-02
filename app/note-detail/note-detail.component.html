@@ -1,0 +1,10 @@
+<div *ngIf="note">
+  <h2>{{ note.name | uppercase }}</h2>
+
+  <div>
+    <h3> <input type="text" [(ngModel)]="note.name" > </h3>
+    <textarea [(ngModel)]="note.content" placeholder="note content"></textarea>
+  </div>
+  <button (click)="save()">Save</button>
+  <button (click)="delete()" >Delete</button>
+</div>
