@@ -1,0 +1,8 @@
+Add exit animations
+    ?intercept button press or API call to add class 'animated foo' and delay navigation by animation length
+Style remaining text and input boxes
+    change boxes to <p contenteditable="true">
+Add CSS media queries for mobile layouts
+Add touch navigation
+Add keyup.enter listeners for forms
+Create and connect to mLab database    
