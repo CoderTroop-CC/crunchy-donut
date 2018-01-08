@@ -1,42 +1,56 @@
-// Dependencies
 const express = require('express');
 const path = require('path');
-const http = require('http');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+const cors = require('cors');
+// Config
+const config = require('./server/config');
 
-// API routes
-const api = require('./server/routes/api');
+// mongodb
+
+mongoose.connect(config.MONGO_URI, { useMongoClient: true });
+const monDb = mongoose.connection;
+
+monDb.on('error', function() {
+  console.error('MongoDB Connection Error. Please make sure that', config.MONGO_URI, 'is running.');
+});
+
+monDb.once('open', function callback() {
+  console.info('Connected to MongoDB:', config.MONGO_URI);
+});
+
+// app
 
 const app = express();
 
-// Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(cors());
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'src')));
-
-// Set api routes
-app.use('/api', api);
-
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/index.html'));
-});
-
-/**
- * Get port from environment and store in Express.
- */
-const port = process.env.PORT || '4200';
+// Set port
+const port = process.env.PORT || '8083';
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
+// Set static path to Angular app in dist
+// Don't run in dev
+if (process.env.NODE_ENV !== 'dev') {
+  app.use('/', express.static(path.join(__dirname, './dist')));
+}
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+// routes
+
+require('./server/api')(app, config);
+
+// Pass routing to Angular app
+// Don't run in dev
+if (process.env.NODE_ENV !== 'dev') {
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '/dist/index.html'));
+  });
+}
+
+// server
+
+app.listen(port, () => console.log(`Server running on localhost:${port}`));

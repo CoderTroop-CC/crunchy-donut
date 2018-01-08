@@ -1,24 +1,11 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-// note schema
-let noteSchema = new Schema({
-  name: {
-      type: String,
-      required: true,
-  },
-  content: {
-      type: String,
-      required: true,
-  },
-  user: {
-      type: String,
-      required: true
-  }
+const noteSchema = new Schema({
+  title: { type: String, required: true },
+  content: String,
+  createdDate: { type: Date, required: true },
+  share: { type: Boolean, required: true }
 });
 
-
-// create a model
-let User = mongoose.model('Note', noteSchema);
-
-module.exports = Note;
+module.exports = mongoose.model('Note', noteSchema);

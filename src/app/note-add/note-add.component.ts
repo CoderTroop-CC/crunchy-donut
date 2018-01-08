@@ -10,7 +10,7 @@ import { NoteService } from '../note.service';
 @Component({
   selector: 'app-note-add',
   templateUrl: './note-add.component.html',
-  styleUrls: ['./note-add.component.css']
+  styleUrls: ['./note-add.component.scss']
 })
 export class NoteAddComponent implements OnInit {
   notes: Note[];

@@ -14,7 +14,7 @@ import { NoteService } from '../note.service';
 @Component({
   selector: 'app-note-search',
   templateUrl: './note-search.component.html',
-  styleUrls: [ './note-search.component.css' ]
+  styleUrls: [ './note-search.component.scss' ]
 })
 export class NoteSearchComponent implements OnInit {
   notes$: Observable<Note[]>;

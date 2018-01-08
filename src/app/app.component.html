@@ -1,10 +1,19 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/noteSearch">Search Notes</a>
-  <a routerLink="/addNote">New Note</a>
-  <a routerLink="/login" >Logout</a>
-</nav>
-<hr>
-<router-outlet></router-outlet>
-<!--<app-messages></app-messages>-->
+<div class="layout-overflow">
+  <div
+    class="layout-canvas"
+    [ngClass]="{'nav-open': navOpen, 'nav-closed': !navOpen}"
+    [style.min-height]="minHeight">
+
+    <!-- HEADER -->
+    <app-header (navToggled)="navToggledHandler($event)"></app-header>
+
+    <!-- CONTENT -->
+    <div id="layout-view" class="layout-view">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- FOOTER -->
+    <app-footer></app-footer>
+
+  </div> 
+</div> 

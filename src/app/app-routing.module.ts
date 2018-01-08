@@ -7,17 +7,18 @@ import { NoteAddComponent }     from './note-add/note-add.component';
 import { NoteSearchComponent }  from './note-search/note-search.component';
 
 //login and authentication
-import { LoginComponent }       from './login/login.component';
-import { RegisterComponent }    from './register/register.component';
-import { AuthGuard }            from './auth-guard';
+//import { LoginComponent }       from './login/login.component';
+//import { RegisterComponent }    from './register/register.component';
+//import { AuthGuard }            from './auth-guard';
+import { CallbackComponent } from './pages/callback/callback.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '', component: DashboardComponent },
   { path: 'detail/:id', component: NoteDetailComponent },
   { path: 'addNote', component: NoteAddComponent },
   { path: 'noteSearch', component: NoteSearchComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  //{ path: 'login', component: LoginComponent },
+  //{ path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '' }
 ];
 
