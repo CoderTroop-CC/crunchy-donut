@@ -29,11 +29,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.getNoteList();
+    this._getNoteList();
     this.title.setTitle(this.pageTitle);
   }
 
-  private getNoteList() {
+  private _getNoteList() {
     this.loading = true;
     // Get future, public events
     this.noteListSub = this.api
@@ -52,8 +52,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       );
   }
 
-  searchEvents() {
-    this.filteredNotes = this.fs.search(this.noteList, this.query, '_id');
+  searchNotes() {
+    this.filteredNotes = this.fs.search(this.noteList, this.query, '_id', 'mediumDate');
   }
 
   resetQuery() {

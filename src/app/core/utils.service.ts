@@ -10,40 +10,20 @@ export class UtilsService {
     return loading === false;
   }
 
-  eventDates(start, end): string {
+  noteDate(created) {
     // Display single-day events as "Jan 7, 2018"
     // Display multi-day events as "Aug 12, 2017 - Aug 13, 2017"
-    const startDate = this.datePipe.transform(start, 'mediumDate');
-    const endDate = this.datePipe.transform(end, 'mediumDate');
-
-    if (startDate === endDate) {
-      return startDate;
-    } else {
-      return `${startDate} - ${endDate}`;
-    }
+    const createdDate = this.datePipe.transform(created, 'mediumDate');
+    //const endDate = this.datePipe.transform(end, 'mediumDate');
   }
 
-  eventDatesTimes(start, end): string {
+  noteDateTime(created) {
     // Display single-day events as "1/7/2018, 5:30 PM - 7:30 PM"
     // Display multi-day events as "8/12/2017, 8:00 PM - 8/13/2017, 10:00 AM"
     const _shortDate = 'M/d/yyyy';
-    const startDate = this.datePipe.transform(start, _shortDate);
-    const startTime = this.datePipe.transform(start, 'shortTime');
-    const endDate = this.datePipe.transform(end, _shortDate);
-    const endTime = this.datePipe.transform(end, 'shortTime');
+    const createdDate = this.datePipe.transform(created, _shortDate);
+    const createdTime = this.datePipe.transform(created, 'shortTime');
 
-    if (startDate === endDate) {
-      return `${startDate}, ${startTime} - ${endTime}`;
-    } else {
-      return `${startDate}, ${startTime} - ${endDate}, ${endTime}`;
-    }
-  }
-
-  eventPast(eventEnd): boolean {
-    // Check if event has already ended
-    const now = new Date();
-    const then = new Date(eventEnd.toString());
-    return now >= then;
   }
 
 }

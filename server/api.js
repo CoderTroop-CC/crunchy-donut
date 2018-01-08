@@ -29,11 +29,11 @@ module.exports = function(app, config) {
 
   // API Routes
 
-  const _noteListProjection = 'title content';
+  const _noteListProjection = 'title content creadedDate';
 
   // GET notes collaborator = true
   app.get('/api/notes', (req, res) => {
-    Note.find({}, _noteListProjection, (err, notes) => {
+    Note.find({share: true}, _noteListProjection, (err, notes) => {
       let notesArr = [];
       if (err) {
         return res.status(500).send({message: err.message});

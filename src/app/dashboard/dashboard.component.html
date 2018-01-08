@@ -17,7 +17,7 @@
                 <button
                   class="btn btn-danger"
                   (click)="resetQuery()"
-                  [disabled]="!query">reset</button>
+                  [disabled]="!query">&times;</button>
               </span>
             </section>
 
@@ -27,11 +27,12 @@
 
             <section class="list-group">
                 <a
-                  *ngFor="let note of notes"
+                  *ngFor="let note of fs.orderByDate(filteredNotes, 'createdDate')"
                   [routerLink]="['/note', note._id]"
                   class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1" [innerHTML]="note.title"></h5>
+                    <small>{{utils.noteDate(note.createdDate)}}</small>
                   </div>
                 </a>
             </section>
