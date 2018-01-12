@@ -4,7 +4,7 @@ import { ApiService } from './../core/api.service';
 import { UtilsService } from './../core/utils.service';
 import { FilterSortService } from './../core/filter-sort.service';
 import { Subscription } from 'rxjs/Subscription';
-import { NoteModel } from './../core/models/Note.model';
+import { NoteModel } from './../core/models/note.model';
 
 @Component({
   selector: 'app-dashboard',

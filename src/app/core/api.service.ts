@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { ENV } from './env.config';
 import { NoteModel } from './models/note.model';
-import { SharingModel } from './models/Sharing.model';
+import { SharingModel } from './models/sharing.model';
 
 @Injectable()
 export class ApiService {
