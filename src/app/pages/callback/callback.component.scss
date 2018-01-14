@@ -1,0 +1,42 @@
+body {
+    background: url(https://images.unsplash.com/photo-1493219686142-5a8641badc78?auto=format&fit=crop&w=1050&q=80);
+    background-size: cover;
+    background-position: center;
+    font-family: 'Berkshire Swash', cursive;
+    font-family: 'Itim', cursive;
+}
+
+html {
+    height: 100%;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 4.5em;
+    color: brown;
+}
+
+h3 {
+    color: rgba(24, 56, 99, 0.822);
+    font-size: 1.5em;
+}
+
+#content {
+    text-align: center;
+    padding-top: 25%;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.active {
+    background: rgb(245, 239, 239);
+}
+
+hr {
+    width: 500px;
+    border-top: 2px solid #f8f8f8;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    border: 0.01px solid;
+}

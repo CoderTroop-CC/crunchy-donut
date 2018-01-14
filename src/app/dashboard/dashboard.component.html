@@ -6,51 +6,38 @@
       <ng-template [ngIf]="noteList.length">
 
           <section class="search input-group mb-3">
-              <label class="input-group-addon" for="search">Search</label>
-              <input
-                id="search"
-                type="text"
-                class="form-control"
-                [(ngModel)]="query"
-                (keyup)="searchNotes()" />
-              <span class="input-group-btn">
-                <button
-                  class="btn btn-danger"
-                  (click)="resetQuery()"
-                  [disabled]="!query">&times;</button>
-              </span>
-            </section>
+            <label class="input-group-addon" for="search">Search</label>
+            <input id="search" type="text" class="form-control" [(ngModel)]="query" (keyup)="searchNotes()"/>
+            <span class="input-group-btn">
+              <button class="btn btn-danger" (click)="resetQuery()" [disabled]="!query">&times;</button>
+            </span>
+          </section>
 
-            <p *ngIf="fs.noSearchResults(filteredNotes, query)" class="alert alert-warning">
-              No notes found for <em class="text-danger">{{query}}</em>, sorry!
-            </p>
-
-            <section class="list-group">
-                <a
-                  *ngFor="let note of fs.orderByDate(filteredNotes, 'createdDate')"
-                  [routerLink]="['/note', note._id]"
-                  class="list-group-item list-group-item-action flex-column align-items-start">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1" [innerHTML]="note.title"></h5>
-                    <small>{{utils.noteDate(note.createdDate)}}</small>
-                  </div>
-                </a>
-            </section>
-          </ng-template>
-
-          <p *ngIf="error" class="alert alert-danger">
-            <strong>Oops!</strong> There was an error retrieving note data.
+          <p *ngIf="fs.noSearchResults(filteredNotes, query)" class="alert alert-warning">
+            No notes found for <em class="text-danger">{{query}}</em>, sorry!
           </p>
 
-        </ng-template>
+          <section class="list-group">
+            <a *ngFor="let note of fs.orderByDate(filteredNotes, 'createdDate')" [routerLink]="['/note', note._id]" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1" [innerHTML]="note.title"></h5>
+                <small>{{utils.noteDate(note.createdDate)}}</small>
+              </div>
+            </a>
+          </section>
+      
+      </ng-template>
+
+      <p *ngIf="!noteList.length" class="alert alert-info">
+        No notes available.
+      </p>
+    </ng-template>
+
+    <p *ngIf="error" class="alert alert-danger">
+      <strong>Oops!</strong> There was an error retrieving note data.
+    </p>
+
+</ng-template>
 
 
 
-<div class="note-wrapper-outer">
-  <a *ngFor="let note of notes" routerLink="/detail/{{note.id}}">
-    <div class="note-wrapper-inner">
-      <h4>{{note.name}}</h4>
-      <p>{{note.content.substring(0,50)}}...</p>
-    </div>
-  </a>
-</div>

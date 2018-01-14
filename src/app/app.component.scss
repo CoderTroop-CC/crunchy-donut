@@ -2,12 +2,13 @@
 @import '../assets/scss/partials/responsive.partial';
 
 .layout-overflow {
-  overflow: hidden; /* necessary to handle offcanvas scrollbar behavior */
+  overflow: hidden; 
 }
+
 .layout-canvas {
   background: #fff;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; /* Safari: http://caniuse.com/#search=css3%203d */
+  -webkit-backface-visibility: hidden; 
   position: relative;
     left: 0;
   transition: transform 250ms ease;

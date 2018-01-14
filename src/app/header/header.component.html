@@ -10,10 +10,20 @@
   <nav id="nav" class="nav" role="navigation">
     <ul class="nav-list">
       <li>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Dashboard</a>
+      </li>
+      <li>
+        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/note/new" routerLinkActive="active">
+          Create Note</a>
+      </li>
+      <li>
+        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Admin</a>
       </li>
     </ul>
   </nav>
+  
   
   <div class="header-page-authStatus">
     <a *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</a>
@@ -21,5 +31,6 @@
       {{auth.userProfile?.name}} <span class="opacity-half">|</span> <a (click)="auth.logout()">Log Out</a>
     </span>
   </div>
+
 
 </header>

@@ -1,0 +1,35 @@
+<!--<app-loading *ngIf="loading"></app-loading>-->
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <h1 class="text-center">{{pageTitle}}</h1>
+  <!-- Note -->
+  <ng-template [ngIf]="note">
+    
+    <div class="card">
+      <!-- note tab navigation -->
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'details'}" [ngClass]="{'active': utils.tabIs(tab, 'details')}">
+              Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'share'}" [ngClass]="{'active': utils.tabIs(tab, 'share')}">
+              Share</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- note detail tab -->
+      <app-note-detail *ngIf="utils.tabIs(tab, 'details')" [note]="note"></app-note-detail>
+
+      <!-- future note share tab  -->
+      <app-share *ngIf="utils.tabIs(tab, 'share')" [noteId]="note._id"></app-share>
+    </div>
+  </ng-template>
+
+  <!-- Error loading notes -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Oops!</strong> There was an error retrieving information for this note.
+  </p>
+</ng-template>

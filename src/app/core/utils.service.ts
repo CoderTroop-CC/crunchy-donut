@@ -11,19 +11,32 @@ export class UtilsService {
   }
 
   noteDate(created) {
-    // Display single-day events as "Jan 7, 2018"
-    // Display multi-day events as "Aug 12, 2017 - Aug 13, 2017"
+    // Display as "Jan 7, 2018"
     const createdDate = this.datePipe.transform(created, 'mediumDate');
-    //const endDate = this.datePipe.transform(end, 'mediumDate');
+
+  }
+
+  tabIs(currentTab: string, tab: string): boolean {
+    // Check if current tab is tab name
+    return currentTab === tab;
   }
 
   noteDateTime(created) {
-    // Display single-day events as "1/7/2018, 5:30 PM - 7:30 PM"
-    // Display multi-day events as "8/12/2017, 8:00 PM - 8/13/2017, 10:00 AM"
+    // Display as "1/7/2018, 5:30 PM"
     const _shortDate = 'M/d/yyyy';
     const createdDate = this.datePipe.transform(created, _shortDate);
     const createdTime = this.datePipe.transform(created, 'shortTime');
 
+  }
+
+  displayCount(collaborators: number): string {
+    const persons = collaborators === 1 ? ' person' : ' people';
+    return collaborators + persons;
+  }
+
+  booleanToText(bool: boolean): string {
+    // Change a boolean to 'Yes' or 'No' string
+    return bool ? 'Yes' : 'No';
   }
 
 }

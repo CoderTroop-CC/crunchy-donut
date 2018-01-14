@@ -1,4 +1,4 @@
-export class NoteModel {
+class NoteModel {
     constructor(
       public title: string,
       public content: string,
@@ -7,3 +7,15 @@ export class NoteModel {
       public _id?: string,
     ) { }
   }
+
+class FormNoteModel {
+    constructor(
+      public title: string,
+      public content: string,
+      public createdDate: string,
+      public share: boolean
+    ) { }
+  }
+
+  export { NoteModel, FormNoteModel };
+

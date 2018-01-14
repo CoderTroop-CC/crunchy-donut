@@ -1,0 +1,54 @@
+<h1 class="text-center">{{pageTitle}}</h1>
+<!--<app-loading *ngIf="loading"></app-loading>-->
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <p class="lead">Welcome, {{auth.userProfile?.name}}! You can create and administer notes below.</p>
+
+  <!-- Notes -->
+  <ng-template [ngIf]="noteList">
+    <ng-template [ngIf]="noteList.length">
+
+      <!-- Search Notes -->
+      <section class="search input-group mb-3">
+        <label class="input-group-addon" for="search">Search</label>
+        <input id="search" type="text" class="form-control" [(ngModel)]="query" (keyup)="searchNotes()"/>
+        <span class="input-group-btn">
+          <button class="btn btn-danger" (click)="resetQuery()" [disabled]="!query">&times;</button>
+        </span>
+      </section>
+
+      <!-- No search results -->
+      <p *ngIf="fs.noSearchResults(filteredNotes, query)" class="alert alert-warning">
+        No notes found for <em class="text-danger">{{query}}</em>, sorry!
+      </p>
+
+      <!-- Note listing -->
+      <section class="list-group">
+        <div *ngFor="let note of fs.orderByDate(filteredNotes, 'createdDate')" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <a [routerLink]="['/note', note._id]">
+              <h5 class="mb-1" [innerHTML]="note.title"></h5>
+            </a>
+            <div class="note-icons">
+              <img *ngIf="!note.viewPublic" class="note-icon" title="Private" src="/assets/images/eye.svg">
+            </div>
+          </div>
+          <p class="mb-1">
+            <strong>Date:</strong> {{utils.noteDate(note.createdDate)}}
+          </p>
+        </div>
+      </section>
+    </ng-template>
+
+    <!-- No notes available -->
+    <p *ngIf="!noteList.length" class="alert alert-info">
+      No notes have been created yet.
+    </p>
+  </ng-template>
+
+  <!-- Error loading notes -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Oops!</strong> There was an error retrieving note data.
+  </p>
+
+</ng-template>

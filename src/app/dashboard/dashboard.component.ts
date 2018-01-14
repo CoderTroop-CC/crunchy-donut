@@ -1,19 +1,20 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ApiService } from './../core/api.service';
-import { UtilsService } from './../core/utils.service';
-import { FilterSortService } from './../core/filter-sort.service';
-import { Subscription } from 'rxjs/Subscription';
-import { NoteModel } from './../core/models/Note.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title }                        from '@angular/platform-browser';
+import { ApiService }                   from './../core/api.service';
+import { UtilsService }                 from './../core/utils.service';
+import { FilterSortService }            from './../core/filter-sort.service';
+import { Subscription }                 from 'rxjs/Subscription';
+import { NoteModel }                    from './../core/models/Note.model';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.scss' ]
 })
+
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  pageTitle = "Dashboard";
+  pageTitle = "Really Awesome Notes";
   noteListSub: Subscription;
   noteList: NoteModel[];
   filteredNotes: NoteModel[];
@@ -29,13 +30,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._getNoteList();
     this.title.setTitle(this.pageTitle);
+    this._getNoteList();
   }
 
   private _getNoteList() {
     this.loading = true;
-    // Get future, public events
     this.noteListSub = this.api
       .getNotes$()
       .subscribe(
@@ -59,6 +59,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   resetQuery() {
     this.query = '';
     this.filteredNotes = this.noteList;
+  }
+
+  get noSearchResults(): boolean {
+    return !!(!this.filteredNotes.length && this.query);
   }
 
   ngOnDestroy() {

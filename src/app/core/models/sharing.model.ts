@@ -1,9 +1,11 @@
-export class SharingModel {
+class sharingModel {
     constructor(
         public userId: string,
-        public userName: string,
-        public eventId: string,
-        public collaborator: boolean,
+        public name: string,
+        public noteId: string,
+        public attending: boolean,
         public _id?: string
       ) { }
 }
+
+export { sharingModel };

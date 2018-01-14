@@ -1,10 +1,8 @@
-<div *ngIf="note">
-  <h2>{{ note.name | uppercase }}</h2>
-
-  <div>
-    <h3> <input type="text" [(ngModel)]="note.name" > </h3>
-    <textarea [(ngModel)]="note.content" placeholder="note content"></textarea>
-  </div>
-  <button (click)="save()">Save</button>
-  <button (click)="delete()" >Delete</button>
+<div class="card-block">
+    <h2 class="card-title text-center">Note Details</h2>
+    <p *ngIf="note.content" class="card-block lead">{{note.content}}</p>
+    
+    <button class="card-footer text-right small"><a [routerLink]="['/note/update', note._id]">Edit</a></button>
 </div>
+  
+  

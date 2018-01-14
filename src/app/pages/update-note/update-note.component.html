@@ -1,0 +1,36 @@
+<h1 class="text-center">{{pageTitle}}</h1>
+
+<!-- <app-loading *ngIf="loading"></app-loading> -->
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <div *ngIf="note" class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'edit'}" [ngClass]="{'active': utils.tabIs(tab, 'edit')}">Edit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'delete'}" [ngClass]="{'active': utils.tabIs(tab, 'delete')}">Delete</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-block">
+      <!-- Edit note form -->
+      <app-note-form
+        *ngIf="utils.tabIs(tab, 'edit')"
+        [note]="note"></app-note-form>
+
+      <!-- Delete note -->
+      <app-delete-note
+        *ngIf="utils.tabIs(tab, 'delete')"
+        [note]="note"></app-delete-note>
+    </div>
+
+  </div>
+
+  <!-- Error loading note -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Error:</strong> Note data could not be retrieved. View <a routerLink="/admin" class="alert-link">Admin Events</a>.
+  </p>
+</ng-template>

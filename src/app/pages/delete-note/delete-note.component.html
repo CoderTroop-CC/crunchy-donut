@@ -1,0 +1,23 @@
+<p class="lead">
+    You are deleting the "<strong [innerHTML]="note.title"></strong>" note.
+  </p>
+  
+  <p class="text-danger">
+    Deleting this note will also remove all associated sharing. Please proceed with caution!
+  </p>
+  
+  <div class="form-group">
+    <label for="deleteNote">Confirm Note title:</label>
+    <input type="text" id="deleteNote" class="form-control" [(ngModel)]="confirmDelete">
+  </div>
+  
+  <!-- Delete button -->
+  <p>
+    <button class="btn btn-danger" (click)="removeNote()" [disabled]="confirmDelete !== note.title || submitting">Delete Note</button>
+    <!--<app-submitting *ngIf="submitting"></app-submitting>-->
+  </p>
+  
+  <!-- Error deleting note -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Oops!</strong> There was an error deleting this note. Please try again.
+  </p>

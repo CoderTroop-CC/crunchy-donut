@@ -15,5 +15,5 @@ export const AUTH_CONFIG: AuthConfig = {
   AUDIENCE: 'http://localhost:8083/api/', 
   REDIRECT: `${ENV.BASE_URI}/callback`,
   SCOPE: 'openid profile',
-  NAMESPACE: 'http://rannotes.com/roles'
+  NAMESPACE: 'http://ranotes.com/roles'
 };

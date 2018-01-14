@@ -4,15 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-loading',
   template: `<img src="/assets/images/Double Ring.svg">`,
   styles: [`
-  :host {
-    display: block;
-  }
-  img {
-    display: block;
-    margin: 20px auto;
-    width: 50px;
-  }
+  :host { display: block;}
+  img { display: block; margin: 20px auto; width: 50px; }
 `]
+
 })
 export class LoadingComponent {
 
