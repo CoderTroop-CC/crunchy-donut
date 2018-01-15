@@ -1,8 +1,8 @@
 import { Component, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { ApiService } from './../../core/api.service';
+import { ApiService } from './../../../core/api.service';
 import { Router } from '@angular/router';
-import { NoteModel } from './../../core/models/note.model';
+import { NoteModel } from './../../../core/models/note.model';
 
 @Component({
   selector: 'app-delete-note',

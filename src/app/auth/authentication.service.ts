@@ -28,8 +28,8 @@ export class AuthenticationService {
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
-   // Subscribe to token expiration stream
-   refreshSub: Subscription;
+  // Subscribe to token expiration stream
+  refreshSub: Subscription;
 
   constructor(private router: Router) {
     // If authenticated, set local profile property,

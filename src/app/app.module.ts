@@ -7,11 +7,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //routing
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NoteDetailComponent } from './note-detail/note-detail.component';
-import { NoteSearchComponent } from './note-search/note-search.component';
+import { SplashComponent } from './pages/splash/splash.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NoteComponent } from './pages/note/note.component';
+import { CreateNoteComponent } from './pages/note/create-note/create-note.component';
+import { NoteDetailComponent } from './pages/note/note-detail/note-detail.component';
+import { NoteSearchComponent } from './pages/note/note-search/note-search.component';
+import { UpdateNoteComponent } from './pages/note/update-note/update-note.component';
+import { DeleteNoteComponent } from './pages/note/delete-note/delete-note.component';
 import { MessagesComponent } from './messages/messages.component';
-import { NoteAddComponent } from './note-add/note-add.component';
+import { ShareComponent } from './pages/share/share.component';
+
 
 //services and helpers
 import { NoteService } from './note.service';
@@ -29,15 +35,10 @@ import { DatePipe } from '@angular/common';
 import { AuthGuard } from './auth/auth-guard';
 import { AdminGuard } from './auth/admin.guard';
 import { AdminComponent } from './pages/admin/admin.component';
-import { NoteComponent } from './pages/note/note.component';
-import { SplashComponent } from './pages/splash/splash.component';
-import { CreateNoteComponent } from './pages/create-note/create-note.component';
-import { NoteFormComponent } from './pages/note-form/note-form.component';
-import { NoteFormService } from './pages/note-form/note-form.service';
-import { UpdateNoteComponent } from './pages/update-note/update-note.component';
-import { DeleteNoteComponent } from './pages/delete-note/delete-note.component';
-import { ShareComponent } from './pages/share/share.component';
-import { ShareFormComponent } from './pages/share-form/share-form.component';
+import { NoteFormComponent } from './pages/note/note-form/note-form.component';
+import { NoteFormService } from './pages/note/note-form/note-form.service';
+import { ShareFormComponent } from './pages/share/share-form/share-form.component';
+import { SubmittingComponent } from './core/submitting.component';
 
 
 
@@ -57,7 +58,6 @@ import { ShareFormComponent } from './pages/share-form/share-form.component';
     NoteDetailComponent,
     MessagesComponent,
     NoteSearchComponent,
-    NoteAddComponent,
     HeaderComponent,
     FooterComponent,
     CallbackComponent,
@@ -69,7 +69,8 @@ import { ShareFormComponent } from './pages/share-form/share-form.component';
     UpdateNoteComponent,
     DeleteNoteComponent,
     ShareComponent,
-    ShareFormComponent
+    ShareFormComponent,
+    SubmittingComponent
   ],
   
   providers: [

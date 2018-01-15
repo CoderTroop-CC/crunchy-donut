@@ -2,7 +2,8 @@
 <!--<app-loading *ngIf="loading"></app-loading>-->
 
 <ng-template [ngIf]="utils.isLoaded(loading)">
-  <p class="lead">Welcome, {{auth.userProfile?.name}}! You can create and administer notes below.</p>
+  <p class="lead">Welcome, {{auth.userProfile?.name}}!</p>
+  <p>Here you can create and either make your notes public or keep them private.</p>
 
   <!-- Notes -->
   <ng-template [ngIf]="noteList">
@@ -30,12 +31,9 @@
               <h5 class="mb-1" [innerHTML]="note.title"></h5>
             </a>
             <div class="note-icons">
-              <img *ngIf="!note.viewPublic" class="note-icon" title="Private" src="/assets/images/eye.svg">
+              <img *ngIf="!note.share" class="note-icon" title="Private" src="/assets/images/eye.svg">
             </div>
           </div>
-          <p class="mb-1">
-            <strong>Date:</strong> {{utils.noteDate(note.createdDate)}}
-          </p>
         </div>
       </section>
     </ng-template>

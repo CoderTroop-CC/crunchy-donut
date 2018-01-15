@@ -17,14 +17,10 @@
 
     <div class="card-block">
       <!-- Edit note form -->
-      <app-note-form
-        *ngIf="utils.tabIs(tab, 'edit')"
-        [note]="note"></app-note-form>
+      <app-note-form *ngIf="utils.tabIs(tab, 'edit')" [note]="note"></app-note-form>
 
       <!-- Delete note -->
-      <app-delete-note
-        *ngIf="utils.tabIs(tab, 'delete')"
-        [note]="note"></app-delete-note>
+      <app-delete-note *ngIf="utils.tabIs(tab, 'delete')" [note]="note"></app-delete-note>
     </div>
 
   </div>

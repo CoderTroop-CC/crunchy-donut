@@ -50,7 +50,7 @@ export class NoteComponent implements OnInit, OnDestroy {
     this.loading = true;
     // GET note by ID
     this.noteSub = this.api
-      .getNotesById$(this.id)
+      .getNoteById$(this.id)
       .subscribe(
         res => {
           this.note = res;

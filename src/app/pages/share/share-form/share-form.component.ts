@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { AuthenticationService } from './../../auth/authentication.service';
+import { AuthenticationService } from './../../../auth/authentication.service';
 import { Subscription } from 'rxjs/Subscription';
-import { ApiService } from './../../core/api.service';
-import { GUESTS_REGEX } from './../../core/forms/formUtils.factory';
-import { sharingModel } from './../../core/models/sharing.model';
+import { ApiService } from './../../../core/api.service';
+import { GUESTS_REGEX } from './../../../core/forms/formUtils.factory';
+import { sharingModel } from './../../../core/models/sharing.model';
 
 @Component({
   selector: 'app-share-form',
@@ -46,7 +46,7 @@ export class ShareFormComponent implements OnInit, OnDestroy {
         this.share.userId,
         this.share.name,
         this.share.noteId,
-        this.share.attending
+        this.share.share
       );
     }
   }

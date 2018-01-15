@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AuthenticationService } from './../../auth/authentication.service';
-import { ApiService } from './../../core/api.service';
-import { UtilsService } from './../../core/utils.service';
+import { AuthenticationService } from './../../../auth/authentication.service';
+import { ApiService } from './../../../core/api.service';
+import { UtilsService } from './../../../core/utils.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { NoteModel } from './../../core/models/note.model';
+import { NoteModel } from './../../../core/models/note.model';
 
 @Component({
   selector: 'app-update-note',
@@ -48,7 +48,7 @@ export class UpdateNoteComponent implements OnInit, OnDestroy {
     this.loading = true;
     // GET note by ID
     this.noteSub = this.api
-      .getNotesById$(this._id)
+      .getNoteById$(this._id)
       .subscribe(
         res => {
           this.note = res;

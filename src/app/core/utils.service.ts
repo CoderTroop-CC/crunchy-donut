@@ -21,14 +21,6 @@ export class UtilsService {
     return currentTab === tab;
   }
 
-  noteDateTime(created) {
-    // Display as "1/7/2018, 5:30 PM"
-    const _shortDate = 'M/d/yyyy';
-    const createdDate = this.datePipe.transform(created, _shortDate);
-    const createdTime = this.datePipe.transform(created, 'shortTime');
-
-  }
-
   displayCount(collaborators: number): string {
     const persons = collaborators === 1 ? ' person' : ' people';
     return collaborators + persons;

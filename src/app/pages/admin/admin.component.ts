@@ -14,7 +14,7 @@ import { NoteModel }                    from './../../core/models/note.model';
 })
 export class AdminComponent implements OnInit, OnDestroy {
   
-  pageTitle = 'Admin';
+  pageTitle = 'User Notes';
   notesSub: Subscription;
   noteList: NoteModel[];
   filteredNotes: NoteModel[];

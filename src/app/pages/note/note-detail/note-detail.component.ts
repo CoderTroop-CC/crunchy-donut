@@ -1,7 +1,7 @@
 import { Component, Input }       from '@angular/core';
-import { AuthenticationService }  from './../auth/authentication.service';
-import { UtilsService }           from './../core/utils.service';
-import { NoteModel }              from './../core/models/note.model';
+import { AuthenticationService }  from './../../../auth/authentication.service';
+import { UtilsService }           from './../../../core/utils.service';
+import { NoteModel }              from './../../../core/models/note.model';
 
 @Component({
   selector: 'app-note-detail',

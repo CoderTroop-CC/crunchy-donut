@@ -3,7 +3,7 @@ class sharingModel {
         public userId: string,
         public name: string,
         public noteId: string,
-        public attending: boolean,
+        public share: boolean,
         public _id?: string
       ) { }
 }

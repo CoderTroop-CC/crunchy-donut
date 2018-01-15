@@ -42,7 +42,7 @@ export class ShareComponent implements OnInit, OnDestroy {
     this.loading = true;
     // Get sharess by note ID
     this.sharesSub = this.api
-      .getSharingByNoteId$(this.noteId)
+      .getSharesByNoteId$(this.noteId)
       .subscribe(
         res => {
           this.shares = res;
@@ -81,7 +81,7 @@ export class ShareComponent implements OnInit, OnDestroy {
     const _initialUserShare = this.shares.filter(share => {
         return share.userId === this.auth.userProfile.sub;
       })[0];
-      // If user has not shareed before and has made
+      // If user has not shared before and has made
     // a change, push new share to local shares store
     if (!_initialUserShare && this.userShare && changed) {
       this.shares.push(this.userShare);
@@ -89,6 +89,7 @@ export class ShareComponent implements OnInit, OnDestroy {
     this._setUserShareGetAttending(changed);
   }
 
+  // update to show who it is shared with
   private _setUserShareGetAttending(changed?: boolean) {
     // Iterate over Shares to get/set user's Share
     // and get total number shared users
@@ -100,7 +101,7 @@ export class ShareComponent implements OnInit, OnDestroy {
       }
       // Count total number of users
       // + additional users
-      if (share.attending) {
+      if (share.share) {
         counts++;
       }
       return share;

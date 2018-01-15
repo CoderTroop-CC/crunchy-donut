@@ -10,8 +10,8 @@
   <nav id="nav" class="nav" role="navigation">
     <ul class="nav-list">
       <li>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          Dashboard</a>
+        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Public Notes</a>
       </li>
       <li>
         <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/note/new" routerLinkActive="active">
@@ -19,7 +19,7 @@
       </li>
       <li>
         <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          Admin</a>
+          User Notes</a>
       </li>
     </ul>
   </nav>

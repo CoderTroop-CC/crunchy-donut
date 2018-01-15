@@ -8,8 +8,8 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { Note } from '../note';
-import { NoteService } from '../note.service';
+import { Note } from '../../../note';
+import { NoteService } from '../../../note.service';
 
 @Component({
   selector: 'app-note-search',

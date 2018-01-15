@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title }                        from '@angular/platform-browser';
-import { ApiService }                   from './../core/api.service';
-import { UtilsService }                 from './../core/utils.service';
-import { FilterSortService }            from './../core/filter-sort.service';
+import { ApiService }                   from './../../core/api.service';
+import { UtilsService }                 from './../../core/utils.service';
+import { FilterSortService }            from './../../core/filter-sort.service';
 import { Subscription }                 from 'rxjs/Subscription';
-import { NoteModel }                    from './../core/models/Note.model';
+import { NoteModel }                    from './../../core/models/Note.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ import { NoteModel }                    from './../core/models/Note.model';
 
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  pageTitle = "Really Awesome Notes";
+  pageTitle = "Really Awesome Notes Dashboard";
   noteListSub: Subscription;
   noteList: NoteModel[];
   filteredNotes: NoteModel[];

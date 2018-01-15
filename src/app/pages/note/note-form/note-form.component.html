@@ -1,4 +1,4 @@
-<form formGroup="noteForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <!-- Title -->
     <div class="form-group">
       <label for="title">Title</label>
@@ -11,43 +11,32 @@
     <div class="form-group">
         <label for="content">Content:</label>
         <textarea id="content" class="form-control"  rows="3" formControlName="content" [maxlength]="nf.contMax"></textarea>
-        <div *ngIf="formErrors.description" class="small text-danger formErrors" [innerHTML]="formErrors.description">
+        <div *ngIf="formErrors.content" class="small text-danger formErrors" [innerHTML]="formErrors.content">
         </div>
       </div>
   
-    <div formGroupName="datesGroup" [ngClass]="{'has-danger': noteForm.get('datesGroup').errors}">
-      <div class="row">
-        <!-- created date -->
-        <div class="form-group col-sm-12 col-md-6">
-          <label for="createdDate">Created Date</label>
-          <input id="createdDate" type="text" class="form-control" formControlName="createdDate" [placeholder]="nf.dateFormat" [maxlength]="nf.dateMax">
-          <div *ngIf="formErrors.datesGroup.createdDate" class="small text-danger formErrors" [innerHTML]="formErrors.datesGroup.createdDate">
-          </div>
-        </div>
-      </div>
-    </div>
-  
+ 
     <!-- View Public -->
     <div class="form-group">
-      <label class="label-inline-group">Add note to share list?</label>
+      <label class="label-inline-group">Add note to public view?</label>
       <div class="form-check form-check-inline">
         <label class="form-check-label">
-          <input id="share-yes" type="radio" class="form-check-input"  [value]="true" formControlName="share"> Yes
+          <input id="publicView-yes" type="radio" class="form-check-input"  [value]="true" formControlName="publicView"> Yes
         </label>
       </div>
       <div class="form-check form-check-inline">
         <label class="form-check-label">
-          <input id="share-no" type="radio" class="form-check-input" [value]="false" formControlName="share"> No
+          <input id="publicView-no" type="radio" class="form-check-input" [value]="false" formControlName="publicView"> No
         </label>
       </div>
-      <div *ngIf="formErrors.share" class="small text-danger formErrors" [innerHTML]="formErrors.share">
+      <div *ngIf="formErrors.publicView" class="small text-danger formErrors" [innerHTML]="formErrors.publicView">
       </div>
     </div>
    
     <!-- Submit -->
     <div class="form-group">
       <button type="submit" class="btn btn-primary" [attr.disabled]="noteForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
-      <!--<app-submitting *ngIf="submitting"></app-submitting>-->
+      <app-submitting *ngIf="submitting"></app-submitting>
       <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
   
       <!-- API submission error -->
