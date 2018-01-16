@@ -10,12 +10,6 @@ export class UtilsService {
     return loading === false;
   }
 
-  noteDate(created) {
-    // Display as "Jan 7, 2018"
-    const createdDate = this.datePipe.transform(created, 'mediumDate');
-
-  }
-
   tabIs(currentTab: string, tab: string): boolean {
     // Check if current tab is tab name
     return currentTab === tab;

@@ -44,14 +44,15 @@ export class NoteFormComponent implements OnInit, OnDestroy {
     if (!this.isEdit) {
       // If creating a new Note, create new
       // FormNoteModel with default null data
-      return new FormNoteModel(null, null, null);
+      return new FormNoteModel(null, null, null, null);
     } else {
       // If editing existing Note, create new
       // FormNoteModel from existing data
       return new FormNoteModel(
         this.note.title,
         this.note.content,
-        this.note.publicView
+        this.note.publicView,
+        this.note.userName
       );
     }
   }

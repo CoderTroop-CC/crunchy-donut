@@ -22,12 +22,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   error: boolean;
   query: '';
   
-  constructor(
-    private title: Title,
-    public utils: UtilsService,
-    private api: ApiService,
-    public fs: FilterSortService
-  ) { }
+  constructor( private title: Title, public utils: UtilsService, private api: ApiService, public fs: FilterSortService ) { }
 
   ngOnInit() {
     this.title.setTitle(this.pageTitle);

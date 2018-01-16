@@ -14,11 +14,11 @@
           Public Notes</a>
       </li>
       <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/note/new" routerLinkActive="active">
+        <a *ngIf="auth.loggedIn" routerLink="/note/new" routerLinkActive="active">
           Create Note</a>
       </li>
       <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a *ngIf="auth.loggedIn" routerLink="/userNotes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           User Notes</a>
       </li>
     </ul>

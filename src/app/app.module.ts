@@ -16,7 +16,7 @@ import { NoteSearchComponent } from './pages/note/note-search/note-search.compon
 import { UpdateNoteComponent } from './pages/note/update-note/update-note.component';
 import { DeleteNoteComponent } from './pages/note/delete-note/delete-note.component';
 import { MessagesComponent } from './messages/messages.component';
-import { ShareComponent } from './pages/share/share.component';
+import { CommentsComponent } from './pages/comments/comments.component';
 
 
 //services and helpers
@@ -37,8 +37,8 @@ import { AdminGuard } from './auth/admin.guard';
 import { AdminComponent } from './pages/admin/admin.component';
 import { NoteFormComponent } from './pages/note/note-form/note-form.component';
 import { NoteFormService } from './pages/note/note-form/note-form.service';
-import { ShareFormComponent } from './pages/share/share-form/share-form.component';
 import { SubmittingComponent } from './core/submitting.component';
+import { CommentsFormComponent } from './pages/comments/comments-form/comments-form.component';
 
 
 
@@ -68,9 +68,9 @@ import { SubmittingComponent } from './core/submitting.component';
     NoteFormComponent,
     UpdateNoteComponent,
     DeleteNoteComponent,
-    ShareComponent,
-    ShareFormComponent,
-    SubmittingComponent
+    SubmittingComponent,
+    CommentsComponent,
+    CommentsFormComponent
   ],
   
   providers: [

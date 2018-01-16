@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const sharingSchema = new Schema({
+const commentSchema = new Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true },
   noteId: { type: String, required: true },
-  sharing: { type: Boolean, required: true }
+  comment: { type: String, require: true}
 });
 
-module.exports = mongoose.model('Sharing', sharingSchema);
+module.exports = mongoose.model('Comment', commentSchema);

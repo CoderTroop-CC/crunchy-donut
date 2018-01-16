@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import { ENV } from './env.config';
 import { NoteModel } from './models/note.model';
-import { sharingModel } from './models/sharing.model';
+import { CommentModel } from './models/comment.model';
 
 @Injectable()
 export class ApiService {
@@ -41,10 +41,10 @@ getNoteById$(id: string): Observable<NoteModel> {
     .catch(this._handleError);
 }
 
-// GET shares by Note ID (login required)
-getSharesByNoteId$(noteId: string): Observable<sharingModel[]> {
+// GET comments by Note ID (login required)
+getCommentsByNoteId$(noteId: string): Observable<CommentModel[]> {
   return this.http
-    .get(`${ENV.BASE_API}note/${noteId}/shares`, {
+    .get(`${ENV.BASE_API}note/${noteId}/comments`, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     })
     .catch(this._handleError);
@@ -68,7 +68,7 @@ editNote$(id: string, note: NoteModel): Observable<NoteModel> {
     .catch(this._handleError);
 }
 
-// DELETE existing Note and all associated Shares (admin only)
+// DELETE existing Note and all associated comments (admin only)
 deleteNote$(id: string): Observable<any> {
   return this.http
     .delete(`${ENV.BASE_API}note/${id}`, {
@@ -77,7 +77,7 @@ deleteNote$(id: string): Observable<any> {
     .catch(this._handleError);
 }
 
-// GET all Notes a specific user has Shareed to (login required)
+// GET all Notes a specific user has commented to (login required)
 getUserNotes$(userId: string): Observable<NoteModel[]> {
   return this.http
     .get(`${ENV.BASE_API}notes/${userId}`, {
@@ -86,19 +86,19 @@ getUserNotes$(userId: string): Observable<NoteModel[]> {
     .catch(this._handleError);
 }
 
-// POST new Share (login required)
-postShare$(share: sharingModel): Observable<sharingModel> {
+// POST new comment (login required)
+postComment$(comment: CommentModel): Observable<CommentModel> {
   return this.http
-    .post(`${ENV.BASE_API}share/new`, share, {
+    .post(`${ENV.BASE_API}comment/new`, comment, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     })
     .catch(this._handleError);
 }
 
-// PUT existing share (login required)
-editShare$(id: string, share: sharingModel): Observable<sharingModel> {
+// PUT existing comment (login required)
+editComment$(id: string, comment: CommentModel): Observable<CommentModel> {
   return this.http
-    .put(`${ENV.BASE_API}share/${id}`, share, {
+    .put(`${ENV.BASE_API}comment/${id}`, comment, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     })
     .catch(this._handleError);

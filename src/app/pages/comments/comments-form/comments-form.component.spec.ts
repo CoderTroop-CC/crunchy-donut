@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShareComponent } from './share.component';
+import { CommentsFormComponent } from './comments-form.component';
 
-describe('ShareComponent', () => {
-  let component: ShareComponent;
-  let fixture: ComponentFixture<ShareComponent>;
+describe('CommentsFormComponent', () => {
+  let component: CommentsFormComponent;
+  let fixture: ComponentFixture<CommentsFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShareComponent ]
+      declarations: [ CommentsFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShareComponent);
+    fixture = TestBed.createComponent(CommentsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

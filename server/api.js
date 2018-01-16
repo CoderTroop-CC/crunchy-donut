@@ -1,7 +1,7 @@
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 const Note = require('./models/note');
-const Sharing = require('./models/sharing');
+const Comment = require('./models/comment');
 
 module.exports = function(app, config) {
   // Authentication middleware
@@ -27,13 +27,33 @@ module.exports = function(app, config) {
     }
   }
 
-  // API Routes
+  /*======================
+    API Routes for NOTES
+    ======================
+  */
 
-  const _noteListProjection = 'title content createdDate';
+  const _noteListProjection = 'title content';
 
-  // GET notes collaborator = true
+  // GET list of public notes
   app.get('/api/notes', (req, res) => {
     Note.find({publicView: true}, _noteListProjection, (err, notes) => {
+        let notesArr = [];
+        if (err) {
+          return res.status(500).send({message: err.message});
+        }
+        if (notes) {
+          notes.forEach(note => {
+            notesArr.push(note);
+          });
+        }
+        res.send(notesArr);
+      }
+    );
+  });
+
+  // GET notes by user
+  app.get('/api/notes/:userName', (req, res) => {
+    Note.find({userName: req.params.userName}, _noteListProjection, (err, notes) => {
       let notesArr = [];
       if (err) {
         return res.status(500).send({message: err.message});
@@ -78,21 +98,21 @@ module.exports = function(app, config) {
 
   // GET public notes by note ID
   app.get('/api/note/:noteId/publicView', jwtCheck, (req, res) => {
-    Sharing.find({noteId: req.params.noteId}, (err, sharing) => {
-      let sharingsArr = [];
+    Comment.find({noteId: req.params.noteId}, (err, comments) => {
+      let commentsArr = [];
       if (err) {
         return res.status(500).send({message: err.message});
       }
-      if (sharing) {
-        sharing.forEach(sharing => {
-          sharingsArr.push(sharing);
+      if (comments) {
+        comments.forEach(comments => {
+          scommentsArr.push(comments);
         });
       }
-      res.send(sharingsArr);
+      res.send(commentsArr);
     });
   });
 
-  app.post('/api/note/new', jwtCheck, adminCheck, (req, res) => {
+  app.post('/api/note/new', jwtCheck,  (req, res) => {
     Note.findOne({title: req.body.title}, (err, existingNote) => {
       if (err) {
         return res.status(500).send({message: err.message});
@@ -103,6 +123,7 @@ module.exports = function(app, config) {
       const note = new Note({
         title: req.body.title,
         content: req.body.content,
+        userName: req.body.userName,
         public: req.body.publicView
       });
       note.save((err) => {
@@ -114,7 +135,7 @@ module.exports = function(app, config) {
     });
   });
 
-  app.put('/api/note/:id', jwtCheck, adminCheck, (req, res) => {
+  app.put('/api/note/:id', jwtCheck, (req, res) => {
     Note.findById(req.params.id, (err, note) => {
       if (err) {
         return res.status(500).send({message: err.message});
@@ -124,6 +145,7 @@ module.exports = function(app, config) {
       }
       note.title = req.body.title;
       note.content = req.body.content;
+      note.userName = req.body.userName;
       note.public = req.body.public;
 
       note.save(err => {
@@ -159,48 +181,124 @@ module.exports = function(app, config) {
     });
   });
 
-  app.post('/api/public/new', jwtCheck, (req, res) => {
-    Public.findOne({noteId: req.body.noteId, userId: req.body.userId}, (err, existingPublicView) => {
+  /*======================
+    API Routes for COMMENTS
+    ======================
+  */
+
+  const _commentListProjection = 'name comment';
+
+  // GET All Comments
+    app.get('/api/comments', jwtCheck, (req, res) => {
+    Comment.find({}, _commentListProjection, (err, comment) => {
+      let commentsArr = [];
       if (err) {
         return res.status(500).send({message: err.message});
       }
-      if (existingPublicView) {
-        return res.status(409).send({message: 'You have already made this note Public.'});
+      if (comments) {
+        comments.forEach(comment => {
+          commentsArr.push(comment);
+        });
       }
-      const publicView = new PublicView({
-        userId: req.body.userId,
-        userName: req.body.userName,
-        noteId: req.body.noteId,
-        sharing: req.body.sharing
+      res.send(commentsArr);
+    });
+  });
+
+  // GET comments by note ID
+  app.get('/api/note/:noteId/comments', jwtCheck, (req, res) => {
+    Comments.find({noteId: req.params.noteId}, (err, comments) => {
+      let commentsArr = [];
+      if (err) {
+        return res.status(500).send({message: err.message});
+      }
+      if (comments) {
+        comments.forEach(comments => {
+          commentsArr.push(comments);
+        });
+      }
+      res.send(commentsArr);
+    });
+  });
+
+  // GET note comment by ID
+  app.get('/api/note/:noteId/comments/:id', jwtCheck, (req, res) => {
+    Comment.findById(req.params.id, (err, comment) => {
+      if (err) {
+        return res.status(500).send({message: err.message});
+      }
+      if (!comment) {
+        return res.status(400).send({message: 'Comment not found.'});
+      }
+      res.send(comment);
+    });
+  });
+
+  
+  // create a new comment
+  app.post('/api/note/:noteId/comments/new', jwtCheck, (req, res) => {
+    Comment.findOne(req.params.id, (err, existingComment) => {
+      if (err) {
+        return res.status(500).send({message: err.message});
+      }
+      if (existingComment) {
+        return res.status(409).send({message: 'You have already created an comment.'});
+      }
+      const comment = new Comment({
+        name: req.body.name,
+        comment: req.body.comment,
+        noteId: req.body.noteId
       });
-      publicView.save((err) => {
+      comment.save((err) => {
         if (err) {
           return res.status(500).send({message: err.message});
         }
-        res.send(publicView);
+        res.send(comment);
       });
     });
   });
 
-  app.put('/api/publicView/:id', jwtCheck, (req, res) => {
-    PublicView.findById(req.params.id, (err, public) => {
+  // update note comment by id
+  app.put('/api/note/:noteid/comments/:id/edit', jwtCheck, (req, res) => {
+    Comment.findById(req.params.id, (err, comment) => {
       if (err) {
         return res.status(500).send({message: err.message});
       }
-      if (!public) {
-        return res.status(400).send({message: 'public view not found.'});
+      if (!comment) {
+        return res.status(400).send({message: 'Comment not found.'});
       }
-      if (public.userId !== req.user.sub) {
-        return res.status(401).send({message: 'You cannot edit someone else\'s publice note.'});
-      }
-      public.userName = req.body.userName;
-      public.sharinging = req.body.sharinging;
+      comment.name = req.body.name;
+      comment.comment = req.body.comment;
+      comment.noteId = req.body.noteId;
 
-      public.save(err => {
+      comment.save(err => {
         if (err) {
           return res.status(500).send({message: err.message});
         }
-        res.send(public);
+        res.send(comment);
+      });
+    });
+  });
+
+  app.delete('/api/note/:noteid/comments/:id', jwtCheck, adminCheck, (req, res) => {
+    Comment.findById(req.params.id, (err, comment) => {
+      if (err) {
+        return res.status(500).send({message: err.message});
+      }
+      if (!comment) {
+        return res.status(400).send({message: 'Comment not found.'});
+      }
+      Comment.findOne(req.params.id, (err, comment) => {
+        if (comment) {
+          comment.forEach(comment => {
+            comment.remove();
+          });
+        }
+        comment.remove(err => {
+          if (err) {
+            return res.status(500).send({message: err.message});
+          }
+          res.status(200).send({message: 'comment was successfully deleted.'});
+        });
       });
     });
   });

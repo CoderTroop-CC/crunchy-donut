@@ -14,8 +14,8 @@
               Details</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'share'}" [ngClass]="{'active': utils.tabIs(tab, 'share')}">
-              Share</a>
+            <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'comment'}" [ngClass]="{'active': utils.tabIs(tab, 'comment')}">
+              Comments</a>
           </li>
         </ul>
       </div>
@@ -23,8 +23,7 @@
       <!-- note detail tab -->
       <app-note-detail *ngIf="utils.tabIs(tab, 'details')" [note]="note"></app-note-detail>
 
-      <!-- future note share tab  -->
-      <app-share *ngIf="utils.tabIs(tab, 'share')" [noteId]="note._id"></app-share>
+      <app-comments *ngIf="utils.tabIs(tab, 'comment')" [noteId]="note._id"></app-comments>
     </div>
   </ng-template>
 

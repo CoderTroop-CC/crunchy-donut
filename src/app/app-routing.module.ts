@@ -21,10 +21,9 @@ const routes: Routes = [
   { path: 'note/:id', component: NoteComponent, canActivate: [AuthGuard]},
   { path: 'note/new', component: CreateNoteComponent},
   { path: 'note/update/:id', component: UpdateNoteComponent },
-  { path: 'admin', canActivate: [AuthGuard, AdminGuard],
+  { path: 'userNotes', canActivate: [AuthGuard,],
     children: [
       { path: '', component: AdminComponent},
-      { path: 'note/new', component: CreateNoteComponent},
       { path: 'note/update/:id', component: UpdateNoteComponent }
     ]
   },

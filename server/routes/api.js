@@ -45,6 +45,24 @@ router.get('/notes', (req, res) => {
             });
     });
 });
+
+// Get comments
+router.get('/comments', (req, res) => {
+    connection((db) => {
+        db.collection('comments')
+            .find()
+            .toArray()
+            .then((comments) => {
+                response.data = comments;
+                res.json(comments);
+                console.log(comments);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
 // Get users
 router.get('/users', (req, res) => {
     connection((db) => {
