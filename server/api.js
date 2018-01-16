@@ -1,7 +1,7 @@
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
-const Note = require('./models/Note');
-const Sharing = require('./models/Sharing');
+const Note = require('./models/note');
+const Sharing = require('./models/sharing');
 
 module.exports = function(app, config) {
   // Authentication middleware
