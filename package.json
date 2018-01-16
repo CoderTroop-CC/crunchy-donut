@@ -26,7 +26,7 @@
     "@angular/platform-server": "~5.0.0",
     "@angular/router": "~5.0.0",
     "@angular/upgrade": "~5.0.0",
-    "auth0-js": "^9.0.2",
+    "auth0-js": "^9.0.3",
     "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "cors": "^2.8.4",
