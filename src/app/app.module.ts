@@ -12,7 +12,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NoteComponent } from './pages/note/note.component';
 import { CreateNoteComponent } from './pages/note/create-note/create-note.component';
 import { NoteDetailComponent } from './pages/note/note-detail/note-detail.component';
-import { NoteSearchComponent } from './pages/note/note-search/note-search.component';
 import { UpdateNoteComponent } from './pages/note/update-note/update-note.component';
 import { DeleteNoteComponent } from './pages/note/delete-note/delete-note.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -20,10 +19,7 @@ import { CommentsComponent } from './pages/comments/comments.component';
 
 
 //services and helpers
-import { NoteService } from './note.service';
-import { MessageService } from './message.service';
 import { JwtInterceptor } from './jwt-interceptor';
-import { UserService } from './user.service';
 import { AuthenticationService } from './auth/authentication.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -57,7 +53,6 @@ import { CommentsFormComponent } from './pages/comments/comments-form/comments-f
     DashboardComponent,
     NoteDetailComponent,
     MessagesComponent,
-    NoteSearchComponent,
     HeaderComponent,
     FooterComponent,
     CallbackComponent,
@@ -74,11 +69,8 @@ import { CommentsFormComponent } from './pages/comments/comments-form/comments-f
   ],
   
   providers: [
-    NoteService,
-    MessageService,
     AuthenticationService,
     Title,
-    UserService,
     ApiService,
     UtilsService,
     DatePipe,
