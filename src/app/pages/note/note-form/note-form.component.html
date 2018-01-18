@@ -7,21 +7,12 @@
       </div>
     </div>
   
-    <!-- content -->
-    <div class="form-group">
-        <label for="content">Content:</label>
-        <textarea id="content" class="form-control"  rows="3" formControlName="content" [maxlength]="nf.contMax"></textarea>
-        <div *ngIf="formErrors.content" class="small text-danger formErrors" [innerHTML]="formErrors.content">
-        </div>
-      </div>
-  
- 
     <!-- View Public -->
     <div class="form-group">
       <label class="label-inline-group">Add note to public view?</label>
       <div class="form-check form-check-inline">
         <label class="form-check-label">
-          <input id="publicView-yes" type="radio" class="form-check-input"  [value]="true" formControlName="publicView"> Yes
+          <input id="publicView-yes" type="radio" class="form-check-input" [value]="true" formControlName="publicView"> Yes
         </label>
       </div>
       <div class="form-check form-check-inline">
@@ -32,11 +23,20 @@
       <div *ngIf="formErrors.publicView" class="small text-danger formErrors" [innerHTML]="formErrors.publicView">
       </div>
     </div>
-   
+  
+    <!-- Content -->
+    <div class="form-group">
+      <label for="content">Note Content:</label>
+      <textarea id="content" class="form-control" rows="4" formControlName="content" [maxlength]="nf.descMax"></textarea>
+      <div *ngIf="formErrors.content" class="small text-danger formErrors" [innerHTML]="formErrors.content">
+      </div>
+    </div>
+  
     <!-- Submit -->
     <div class="form-group">
       <button type="submit" class="btn btn-primary" [attr.disabled]="noteForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
-      <app-submitting *ngIf="submitting"></app-submitting>
+
+      <!--<app-submitting *ngIf="submitting"></app-submitting>-->
       <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
   
       <!-- API submission error -->

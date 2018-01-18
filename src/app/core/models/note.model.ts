@@ -3,7 +3,6 @@ class NoteModel {
       public title: string,
       public content: string,
       public publicView: boolean,
-      public userName: string,
       public _id?: string,
     ) { }
   }

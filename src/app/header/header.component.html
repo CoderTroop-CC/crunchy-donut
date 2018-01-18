@@ -1,7 +1,7 @@
 <header id="header" class="header">
   
-  <div class="header-page bg-primary">
-    <a *ngIf="auth.loggedIn" class="toggle-offcanvas bg-primary" (click)="toggleNav()"><span></span></a>
+  <div class="header-page bg-success">
+    <a *ngIf="auth.loggedIn" class="toggle-offcanvas bg-success" (click)="toggleNav()"><span></span></a>
     <h1 class="header-page-siteTitle"><a routerLink="/">RA Notes</a></h1>
   </div>
   
@@ -14,11 +14,11 @@
           Public Notes</a>
       </li>
       <li>
-        <a *ngIf="auth.loggedIn" routerLink="/note/new" routerLinkActive="active">
+        <a *ngIf="auth.loggedIn" routerLink="/note/note/new" routerLinkActive="active">
           Create Note</a>
       </li>
       <li>
-        <a *ngIf="auth.loggedIn" routerLink="/userNotes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a *ngIf="auth.loggedIn" routerLink="/note/userNotes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           User Notes</a>
       </li>
     </ul>

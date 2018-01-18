@@ -17,13 +17,11 @@ import { AdminComponent }       from './pages/admin/admin.component';
 const routes: Routes = [
   { path: '', component: SplashComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'note/:id', component: NoteComponent, canActivate: [AuthGuard]},
-  { path: 'note/new', component: CreateNoteComponent},
-  { path: 'note/update/:id', component: UpdateNoteComponent },
+  { path: 'note', loadChildren: './pages/note/note.module#NoteModule', canActivate: [AuthGuard]},
   { path: 'callback', component: CallbackComponent },
   { path: 'userNotes', canActivate: [AuthGuard,],
     children: [
-      { path: '', component: AdminComponent},
+      { path: '', component: NoteComponent},
       { path: 'note/update/:id', component: UpdateNoteComponent }
     ]
   },

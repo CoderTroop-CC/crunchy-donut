@@ -33,6 +33,7 @@ module.exports = function(app, config) {
   */
 
   const _noteListProjection = 'title content';
+  const _existingNote = 'title content';
 
   // GET list of public notes
   app.get('/api/notes', (req, res) => {
@@ -112,19 +113,18 @@ module.exports = function(app, config) {
     });
   });
 
-  app.post('/api/note/new', jwtCheck,  (req, res) => {
-    Note.findOne({title: req.body.title}, (err, existingNote) => {
-      if (err) {
-        return res.status(500).send({message: err.message});
-      }
-      if (existingNote) {
-        return res.status(409).send({message: 'You have already created an note with this title and content.'});
-      }
-      const note = new Note({
+  app.post('/api/note/new', jwtCheck, (req, res) => {
+      Note.findOne({ title: req.body.title }, (err, existingNote) =>{
+        if(err) {
+          return res.status(500).send({message: err.message});
+        } 
+        if(existingNote) {
+          return res.status(409).send({message: 'You have already created a note with this title.'});
+        }
+        const note = new Note({
         title: req.body.title,
         content: req.body.content,
-        userName: req.body.userName,
-        public: req.body.publicView
+        publicView: req.body.publicView
       });
       note.save((err) => {
         if (err) {
@@ -134,6 +134,7 @@ module.exports = function(app, config) {
       });
     });
   });
+
 
   app.put('/api/note/:id', jwtCheck, (req, res) => {
     Note.findById(req.params.id, (err, note) => {

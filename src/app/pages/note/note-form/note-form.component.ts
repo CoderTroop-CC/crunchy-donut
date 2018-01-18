@@ -52,7 +52,7 @@ export class NoteFormComponent implements OnInit, OnDestroy {
         this.note.title,
         this.note.content,
         this.note.publicView,
-        this.note.userName
+        this.note._id
       );
     }
   }
