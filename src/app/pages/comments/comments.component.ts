@@ -20,7 +20,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   loading: boolean;
   error: boolean;
   userComment: CommentModel;
-  totalAttending: number;
+  totalComments: number;
   footerTense: string;
   showAllComments = false;
   showCommentsText = 'View All Comments';
@@ -103,7 +103,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
       return comment;
     });
     this.comments = commentArr;
-    this.totalAttending = counts;
+    this.totalComments = counts;
   }
 
   ngOnDestroy() {

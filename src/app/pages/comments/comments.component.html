@@ -1,75 +1,72 @@
 <div class="card-block">
-  <h2 class="card-title text-center">Comments</h2>
-  <!--<app-loading *ngIf="loading"></app-loading>-->
-</div>
-
-
-<ng-template [ngIf]="utils.isLoaded(loading)">
-  <ng-template [ngIf]="!comments">
-
-      <!-- All comments -->
-  <div class="card-block text-right">
-      <button (click)="toggleShowComments()" class="btn btn-link btn-sm">{{showCommentsText}}</button>
-    </div>
+    <h2 class="card-title text-center">Comments</h2>
+    <!--<app-loading *ngIf="loading"></app-loading>-->
+  </div>
   
-    <section class="allComments" *ngIf="showAllComments" [@expandCollapse]>
-      <div class="card-block">
-        <h3 class="card-title text-center">All Comments</h3>
+  
+  <ng-template [ngIf]="utils.isLoaded(loading)">
+    <ng-template [ngIf]="!comments">
+  
+        <!-- All comments -->
+    <div class="card-block text-right">
+        <button (click)="toggleShowComments()" class="btn btn-link btn-sm">{{showCommentsText}}</button>
+      </div>
+    
+      <section class="allComments" *ngIf="showAllComments" [@expandCollapse]>
+        <div class="card-block">
+          <h3 class="card-title text-center">All Comments</h3>
+        </div>
+    
+        <ul *ngIf="comments.length" class="list-group list-group-flush">
+          <li class="list-group-item list-group-item-success justify-content-between">
+            <strong>Total Comments</strong>
+            <span class="badge badge-success badge-pill">{{totalComments}}</span>
+          </li>
+          <li *ngFor="let comment of comments"
+            class="list-group-item small">
+            {{comment.name}} <em>{{comment.comments}}</em>
+          </li>
+        </ul>
+      </section>
+    
+      <!-- Error loading comments -->
+      <div *ngIf="error" class="card-block">
+        <p class="alert alert-danger">
+          <strong>Oops!</strong> There was an error retrieving comments for this note.
+        </p>
       </div>
   
-      <ul *ngIf="comments.length" class="list-group list-group-flush">
-        <li class="list-group-item list-group-item-success justify-content-between">
-          <strong>Total Comments</strong>
-          <span class="badge badge-success badge-pill">{{totalComments}}</span>
-        </li>
-        <li *ngFor="let comment of comments"
-          class="list-group-item small">
-          {{comment.name}} <em>{{comment.comments}}</em>
-        </li>
-      </ul>
-    </section>
+      <!-- User has commented -->
+      <ng-template [ngIf]="userComment">
+        <p class="card-block lead">Below are comments from other users</p>
   
-    <!-- Error loading comments -->
-    <div *ngIf="error" class="card-block">
-      <p class="alert alert-danger">
-        <strong>Oops!</strong> There was an error retrieving comments for this note.
-      </p>
-    </div>
-
-    <!-- User has commented -->
-    <ng-template [ngIf]="userComment">
-      <p class="card-block lead">Below are comments from other users</p>
-
-      <ul *ngIf="!showEditForm" class="list-group list-group-flush">
-        <li class="list-group-item">
-          <strong>Note Owner: </strong>{{userComment.name}}
-        </li>
-        <li class="list-group-item">
-          <strong>Public Note: </strong>{{utils.booleanToText(userComment.comment)}}
-        </li>
-        <li *ngIf="userComment.comments" class="list-group-item">
-          <strong>Contact Info: </strong><span [innerHTML]="userComment.comments"></span>
-        </li>
-      </ul>
-
-      <div class="card-block">
-        <button class="btn btn-info" [ngClass]="{'btn-info': !showEditForm, 'btn-warning': showEditForm}" (click)="toggleEditForm()">{{editBtnText}}</button>
-
-        <!--<app-comments-form *ngIf="showEditForm" [noteId]="noteId" [comment]="userComment" (submitComment)="onSubmitComment($note)"></app-comments-form>-->
+        <ul *ngIf="!showEditForm" class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Note Owner: </strong>{{comment.name}}
+          </li>
+          <li class="list-group-item">
+            <strong>Comment: </strong>{{utils.booleanToText(comment.comment)}}
+          </li>
+        </ul>
+  
+        <div class="card-block">
+          <button class="btn btn-info" [ngClass]="{'btn-info': !showEditForm, 'btn-warning': showEditForm}" (click)="toggleEditForm()">{{editBtnText}}</button>
+  
+          <!--<app-comments-form *ngIf="showEditForm" [noteId]="noteId" [comment]="userComment" (submitComment)="onSubmitComment($note)"></app-comments-form>-->
+        </div>
+      </ng-template>
+  
+      <!-- No comment yet -->
+      <div *ngIf="!userComment" class="card-block">
+        <p class="lead">Fill out the form below to respond:</p>
+        <app-comments-form [noteId]="noteId" (submitComment)="onSubmitComment($note)"></app-comments-form>
       </div>
     </ng-template>
-
-    <!-- No comment yet -->
-    <div *ngIf="!userComment" class="card-block">
-      <p class="lead">Fill out the form below to respond:</p>
-      <app-comments-form [noteId]="noteId" (submitComment)="onSubmitComment($note)"></app-comments-form>
-    </div>
+  
+  
   </ng-template>
-
-
-</ng-template>
-
-<!-- Footer showing # of total attending guests -->
-<div class="card-footer text-right">
-  <small *ngIf="totalAttending >= 0" class="text-muted">{{utils.displayCount(totalComments)}} {{footerTense}}</small>
-</div>
+  
+  <!-- Footer showing # of total attending guests -->
+  <div class="card-footer text-right">
+    <small *ngIf="totalAttending >= 0" class="text-muted">{{utils.displayCount(totalComments)}} {{footerTense}}</small>
+  </div>

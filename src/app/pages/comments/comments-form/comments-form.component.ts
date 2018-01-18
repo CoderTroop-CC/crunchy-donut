@@ -2,7 +2,9 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { AuthenticationService } from './../../../auth/authentication.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ApiService } from './../../../core/api.service';
-import { CommentModel } from './../../../core/models/comment.model';
+import { CommentModel, FormCommentModel } from './../../../core/models/comment.model';
+import { FormGroup } from '@angular/forms/src/model';
+
 
 @Component({
   selector: 'app-comments-form',
@@ -16,8 +18,10 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
   @Input() userComment: CommentModel;
   @Output() submitComment = new EventEmitter();
   isEdit: boolean;
+  commentForm: FormGroup;
   formComment: CommentModel;
   submitCommentSub: Subscription;
+  submitCommentObj: CommentModel;
   submitting: boolean;
   error: boolean;
 
@@ -29,16 +33,11 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
     //this._setFormComment();
   }
 
- /*== private _setFormComment() {
+ private _setFormComment() {
     if (!this.isEdit) {
       // If creating a new Comment,
       // create new CommentModel with default data
-      this.formComment = new CommentModel(
-        this.auth.userProfile.sub,
-        this.auth.userProfile.name,
-        this.noteId,
-        this.comment <============================== problem why?
-      )
+      return new FormCommentModel(null,null,null,null,null)
     } else {
       // If editing an existing Comment,
       // create new CommentModel from existing data
@@ -49,7 +48,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
         this.userComment.comment
       );
     }
-  }*/
+  }
 
   onSubmit() {
     this.submitting = true;
