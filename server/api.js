@@ -33,7 +33,6 @@ module.exports = function(app, config) {
   */
 
   const _noteListProjection = 'title content';
-  const _existingNote = 'title content';
 
   // GET list of public notes
   app.get('/api/notes', (req, res) => {
@@ -166,17 +165,17 @@ module.exports = function(app, config) {
       if (!note) {
         return res.status(400).send({message: 'Note not found.'});
       }
-      Public.find({noteId: req.params.id}, (err, publics) => {
-        if (publics) {
-          publics.forEach(public => {
-            public.remove();
+      Comment.find({noteId: req.params.id}, (err, comments) => {
+        if (comments) {
+          comments.forEach(comment => {
+            comments.remove();
           });
         }
         note.remove(err => {
           if (err) {
             return res.status(500).send({message: err.message});
           }
-          res.status(200).send({message: 'Note and publics successfully deleted.'});
+          res.status(200).send({message: 'Note and comments successfully deleted.'});
         });
       });
     });
@@ -187,7 +186,7 @@ module.exports = function(app, config) {
     ======================
   */
 
-  const _commentListProjection = 'name comment';
+  const _commentListProjection = 'email comment';
 
   // GET All Comments
     app.get('/api/comments', jwtCheck, (req, res) => {
@@ -207,7 +206,7 @@ module.exports = function(app, config) {
 
   // GET comments by note ID
   app.get('/api/note/:noteId/comments', jwtCheck, (req, res) => {
-    Comments.find({noteId: req.params.noteId}, (err, comments) => {
+    Comment.find({noteId: req.params.noteId}, (err, comments) => {
       let commentsArr = [];
       if (err) {
         return res.status(500).send({message: err.message});
@@ -221,20 +220,7 @@ module.exports = function(app, config) {
     });
   });
 
-  // GET note comment by ID
-  app.get('/api/note/:noteId/comments/:id', jwtCheck, (req, res) => {
-    Comment.findById(req.params.id, (err, comment) => {
-      if (err) {
-        return res.status(500).send({message: err.message});
-      }
-      if (!comment) {
-        return res.status(400).send({message: 'Comment not found.'});
-      }
-      res.send(comment);
-    });
-  });
-
-  
+    
   // create a new comment
   app.post('/api/note/:noteId/comments/new', jwtCheck, (req, res) => {
     Comment.findOne(req.params.id, (err, existingComment) => {
