@@ -105,7 +105,7 @@ module.exports = function(app, config) {
       }
       if (comments) {
         comments.forEach(comments => {
-          scommentsArr.push(comments);
+          commentsArr.push(comments);
         });
       }
       res.send(commentsArr);
