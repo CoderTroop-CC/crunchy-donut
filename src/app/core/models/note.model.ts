@@ -2,8 +2,9 @@ class NoteModel {
     constructor(
       public title: string,
       public content: string,
+      public email: string,
       public publicView: boolean,
-      public _id?: string,
+      public _id?: string
     ) { }
   }
 
@@ -11,8 +12,9 @@ class FormNoteModel {
     constructor(
       public title: string,
       public content: string,
-      public publicView: boolean,
-      public userName: string
+      public email: string,
+      public publicView: boolean
+      
     ) { }
   }
 

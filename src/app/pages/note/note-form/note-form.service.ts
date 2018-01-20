@@ -8,6 +8,7 @@ export class NoteFormService {
   formErrors = {
     title: '',
     content: '',
+    email: '',
     publicView: ''
   };
   // Min/maxlength validation
@@ -26,6 +27,9 @@ export class NoteFormService {
       required: `Content is <strong>required</strong>.`,
       minlength: `Content must be ${this.textMin} characters or more.`,
       maxlength: `Content must be ${this.contMax} characters or less.`
+    },
+    email: {
+      required: 'Email address is required.'
     },
     publicView: {
       required: `You must specify whether this note should be public.`

@@ -123,6 +123,7 @@ module.exports = function(app, config) {
         const note = new Note({
         title: req.body.title,
         content: req.body.content,
+        email: req.body.email,
         publicView: req.body.publicView
       });
       note.save((err) => {
@@ -145,7 +146,7 @@ module.exports = function(app, config) {
       }
       note.title = req.body.title;
       note.content = req.body.content;
-      note.userName = req.body.userName;
+      note.email = req.body.email;
       note.public = req.body.public;
 
       note.save(err => {

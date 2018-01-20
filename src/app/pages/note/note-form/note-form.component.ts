@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ApiService } from './../../../core/api.service';
 import { NoteFormService } from './note-form.service';
 import { NoteModel, FormNoteModel } from './../../../core/models/note.model';
+import { NullAstVisitor } from '@angular/compiler';
 
 @Component({
   selector: 'app-note-form',
@@ -51,10 +52,11 @@ export class NoteFormComponent implements OnInit, OnDestroy {
       return new FormNoteModel(
         this.note.title,
         this.note.content,
-        this.note.publicView,
-        this.note._id
+        this.note.email,
+        this.note.publicView
+        
       );
-    }
+    } 
   }
 
   private _buildForm() {
@@ -66,6 +68,9 @@ export class NoteFormComponent implements OnInit, OnDestroy {
       ]],
       content: [this.formNote.content,
         Validators.maxLength(this.nf.contMax)
+      ],
+      email: [this.formNote.email,
+        Validators.required
       ],
       publicView: [this.formNote.publicView,
         Validators.required
@@ -112,9 +117,11 @@ export class NoteFormComponent implements OnInit, OnDestroy {
     return new NoteModel(
       this.noteForm.get('title').value,
       this.noteForm.get('content').value,
+      this.noteForm.get('email').value,
       this.noteForm.get('publicView').value,
       this.note ? this.note._id : null
     );
+    
   }
 
   onSubmit() {

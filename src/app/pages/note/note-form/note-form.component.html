@@ -31,6 +31,13 @@
       <div *ngIf="formErrors.content" class="small text-danger formErrors" [innerHTML]="formErrors.content">
       </div>
     </div>
+  <!-- user email -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" type="text" class="form-control" formControlName="email">
+      <div *ngIf="formErrors.email" class="small text-danger formErrors" [innerHTML]="formErrors.email">
+      </div>
+    </div>
   
     <!-- Submit -->
     <div class="form-group">
