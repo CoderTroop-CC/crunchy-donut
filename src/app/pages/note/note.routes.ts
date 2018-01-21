@@ -8,5 +8,5 @@ export const NOTE_ROUTES: Routes = [
   { path: ':id', component: NoteComponent },
   { path: 'note/new', component: CreateNoteComponent },
   { path: 'update/:id', component: UpdateNoteComponent },
-  { path: 'userNote', component: NoteComponent }
+  { path: ':email', component: NoteComponent }
 ];

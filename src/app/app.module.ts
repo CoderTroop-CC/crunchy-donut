@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { SplashComponent } from './pages/splash/splash.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CommentsComponent } from './pages/comments/comments.component';
+import { UserNoteComponent }   from './pages/user-note/user-note.component';
 
 
 //services and helpers
@@ -21,7 +22,7 @@ import { CallbackComponent } from './pages/callback/callback.component';
 
 import { AuthGuard } from './auth/auth-guard';
 import { AdminGuard } from './auth/admin.guard';
-import { AdminComponent } from './pages/admin/admin.component';
+//import { AdminComponent } from './pages/admin/admin.component';
 import { NoteFormService } from './pages/note/note-form/note-form.service';
 import { SubmittingComponent } from './core/submitting.component';
 
@@ -43,7 +44,8 @@ import { SubmittingComponent } from './core/submitting.component';
     AppComponent,
     DashboardComponent,
     CallbackComponent,
-    AdminComponent,
+    //AdminComponent,
+    UserNoteComponent,
     SplashComponent,
     SubmittingComponent,
   ],

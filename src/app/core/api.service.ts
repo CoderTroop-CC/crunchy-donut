@@ -23,10 +23,10 @@ export class ApiService {
     .catch(this._handleError);
 }
 
-// GET all Notes - private and public (admin only)
-getAdminNotes$(): Observable<NoteModel[]> {
+// GET all Notes by user
+getUserNotes$(email: string): Observable<NoteModel[]> {
   return this.http
-    .get(`${ENV.BASE_API}notes/admin`, {
+    .get(`${ENV.BASE_API}userNotes/${email}`, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     })
     .catch(this._handleError);
@@ -72,15 +72,6 @@ editNote$(id: string, note: NoteModel): Observable<NoteModel> {
 deleteNote$(id: string): Observable<any> {
   return this.http
     .delete(`${ENV.BASE_API}note/${id}`, {
-      headers: new HttpHeaders().set('Authorization', this._authHeader)
-    })
-    .catch(this._handleError);
-}
-
-// GET all Notes a specific user has commented to (login required)
-getUserNotes$(userId: string): Observable<NoteModel[]> {
-  return this.http
-    .get(`${ENV.BASE_API}notes/${userId}`, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     })
     .catch(this._handleError);

@@ -4,26 +4,31 @@ import { AuthenticationService }        from './../../auth/authentication.servic
 import { ApiService }                   from './../../core/api.service';
 import { UtilsService }                 from './../../core/utils.service';
 import { FilterSortService }            from './../../core/filter-sort.service';
+import { ActivatedRoute }                from '@angular/router';
 import { Subscription }                 from 'rxjs/Subscription';
 import { NoteModel }                    from './../../core/models/note.model';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-user-note',
+  templateUrl: './user-note.component.html',
+  styleUrls: ['./user-note.component.scss']
 })
-export class AdminComponent implements OnInit, OnDestroy {
+export class UserNoteComponent implements OnInit, OnDestroy {
   
   pageTitle = 'User Notes';
+  email: string;
+  routeSub: Subscription;
   notesSub: Subscription;
-  noteList: NoteModel[];
+  note: NoteModel;
   filteredNotes: NoteModel[];
+  noteList: NoteModel[];
   loading: boolean;
   error: boolean;
   query = '';
 
   constructor(
     private title: Title,
+    private route: ActivatedRoute,
     public auth: AuthenticationService,
     private api: ApiService,
     public utils: UtilsService,
@@ -31,13 +36,17 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title.setTitle(this.pageTitle);
-    this._getNoteList();
-  }
+    this.notesSub = this.route.params
+    .subscribe(params => {
+      this.email = params['email'];
+      this._getUserNoteList();
+  });
+}
 
-  private _getNoteList() {
+  private _getUserNoteList() {
     this.loading = true;
     this.notesSub = this.api
-      .getAdminNotes$()
+      .getUserNotes$(this.email)
       .subscribe(
         res => {
           this.noteList = res;

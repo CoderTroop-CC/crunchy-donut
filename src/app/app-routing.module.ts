@@ -8,23 +8,19 @@ import { NoteDetailComponent }  from './pages/note/note-detail/note-detail.compo
 import { CreateNoteComponent } from './pages/note/create-note/create-note.component';
 import { UpdateNoteComponent } from './pages/note/update-note/update-note.component';
 import { CallbackComponent }    from './pages/callback/callback.component';
+import { UserNoteComponent }   from './pages/user-note/user-note.component';
 
 //login and authentication
 import { AuthGuard }            from './auth/auth-guard';
 import { AdminGuard }           from './auth/admin.guard';
-import { AdminComponent }       from './pages/admin/admin.component';
+
 
 const routes: Routes = [
   { path: '', component: SplashComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'note', loadChildren: './pages/note/note.module#NoteModule', canActivate: [AuthGuard]},
   { path: 'callback', component: CallbackComponent },
-  { path: 'userNotes', canActivate: [AuthGuard,],
-    children: [
-      { path: '', component: NoteComponent},
-      { path: 'note/update/:id', component: UpdateNoteComponent }
-    ]
-  },
+  { path: 'userNotes/:email', component: UserNoteComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

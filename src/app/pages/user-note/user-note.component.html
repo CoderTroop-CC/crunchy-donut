@@ -3,7 +3,7 @@
 
 <ng-template [ngIf]="utils.isLoaded(loading)">
   <p class="lead">Welcome, {{auth.userProfile?.name}}!</p>
-  <p>Here you can create and either make your notes public or keep them private.</p>
+  <p>This is a list of all your notes.  Public and private.</p>
 
   <!-- Notes -->
   <ng-template [ngIf]="noteList">

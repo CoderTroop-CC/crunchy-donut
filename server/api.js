@@ -52,8 +52,8 @@ module.exports = function(app, config) {
   });
 
   // GET notes by user
-  app.get('/api/notes/:userName', (req, res) => {
-    Note.find({userName: req.params.userName}, _noteListProjection, (err, notes) => {
+  app.get('/api/userNotes/:email', (req, res) => {
+    Note.find({email: req.params.email}, _noteListProjection, (err, notes) => {
       let notesArr = [];
       if (err) {
         return res.status(500).send({message: err.message});
