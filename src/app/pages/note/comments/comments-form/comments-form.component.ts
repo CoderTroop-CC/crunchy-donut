@@ -119,7 +119,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
   
       if (!this.isEdit) {
         this.submitCommentSub = this.api
-          .postComment$(this.submitCommentObj)
+          .postComment$(this.submitCommentObj, this.noteId)
           .subscribe(
             data => this._handleSubmitSuccess(data),
             err => this._handleSubmitError(err)

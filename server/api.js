@@ -225,18 +225,16 @@ module.exports = function(app, config) {
 
     
   // create a new comment
-  app.post('/api/comments/new', jwtCheck, (req, res) => {
+  app.post('/api/note/:noteId', jwtCheck, (req, res) => {
     Comment.findOne(req.params.id, (err, existingComment) => {
       if (err) {
         return res.status(500).send({message: err.message});
       }
-      if (existingComment) {
-        return res.status(409).send({message: 'You have already created an comment.'});
-      }
       const comment = new Comment({
-        name: req.body.name,
-        comment: req.body.comment,
-        noteId: req.body.noteId
+        userId: auth.profile.userId,
+        noteId: req.body.noteId, 
+        userEmail: auth.profile.email,
+        content: req.body.content
       });
       comment.save((err) => {
         if (err) {
