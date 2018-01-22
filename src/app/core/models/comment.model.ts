@@ -2,20 +2,20 @@ import { EmailValidator } from "@angular/forms/src/directives/validators";
 
 class CommentModel {
     constructor(
-        public userId: string,
-        public name: EmailValidator,
+        //public userId: string,
         public noteId: string,
-        public comment: string,
+        public userEmail: string,
+        public content: string,
         public _id?: string
       ) { }
 }
 
 class FormCommentModel {
     constructor(
-        public userId: string,
-        public name: EmailValidator,
+        //public userId: string,
         public noteId: string,
-        public comment: string,
+        public userEmail: string,
+        public content: string,
         public _id?: string
     ) { }
   }

@@ -67,7 +67,7 @@ module.exports = function(app, config) {
     });
   });
 
-  // get all notes
+  // GET all notes
   app.get('/api/notes/admin', jwtCheck, adminCheck, (req, res) => {
     Note.find({}, _noteListProjection, (err, notes) => {
       let notesArr = [];
@@ -112,6 +112,7 @@ module.exports = function(app, config) {
     });
   });
 
+  // POST new note
   app.post('/api/note/new', jwtCheck, (req, res) => {
       Note.findOne({ title: req.body.title }, (err, existingNote) =>{
         if(err) {
@@ -135,7 +136,7 @@ module.exports = function(app, config) {
     });
   });
 
-
+  // UPDATE note
   app.put('/api/note/:id', jwtCheck, (req, res) => {
     Note.findById(req.params.id, (err, note) => {
       if (err) {
@@ -158,6 +159,7 @@ module.exports = function(app, config) {
     });
   });
 
+  // DELETE note
   app.delete('/api/note/:id', jwtCheck, adminCheck, (req, res) => {
     Note.findById(req.params.id, (err, note) => {
       if (err) {
@@ -223,7 +225,7 @@ module.exports = function(app, config) {
 
     
   // create a new comment
-  app.post('/api/note/:noteId/comments/new', jwtCheck, (req, res) => {
+  app.post('/api/comments/new', jwtCheck, (req, res) => {
     Comment.findOne(req.params.id, (err, existingComment) => {
       if (err) {
         return res.status(500).send({message: err.message});

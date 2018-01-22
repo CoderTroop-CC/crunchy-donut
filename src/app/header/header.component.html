@@ -18,7 +18,7 @@
           Create Note</a>
       </li>
       <li>
-        <a *ngIf="auth.loggedIn" routerLink="/note/userNotes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a *ngIf="auth.loggedIn" routerLink="/userNotes/{{auth.userProfile?.name}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           User Notes</a>
       </li>
     </ul>

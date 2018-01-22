@@ -3,10 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SplashComponent }        from './pages/splash/splash.component';
 import { DashboardComponent }   from './pages/dashboard/dashboard.component';
-import { NoteComponent }        from './pages/note/note.component';
-import { NoteDetailComponent }  from './pages/note/note-detail/note-detail.component';
-import { CreateNoteComponent } from './pages/note/create-note/create-note.component';
-import { UpdateNoteComponent } from './pages/note/update-note/update-note.component';
 import { CallbackComponent }    from './pages/callback/callback.component';
 import { UserNoteComponent }   from './pages/user-note/user-note.component';
 

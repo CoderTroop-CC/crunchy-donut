@@ -2,10 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthenticationService } from './../../auth/authentication.service';
 import { ApiService } from './../../core/api.service';
+import { FilterSortService } from './../../core/filter-sort.service';
 import { UtilsService } from './../../core/utils.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { NoteModel } from './../../core/models/note.model';
+import { CommentModel } from './../../core/models/comment.model';
 
 @Component({
   selector: 'app-note',
@@ -19,9 +21,12 @@ export class NoteComponent implements OnInit, OnDestroy {
   tabSub: Subscription;
   noteSub: Subscription;
   note: NoteModel;
+  filteredNotes: NoteModel[];
+  noteList: NoteModel[];
   loading: boolean;
   error: boolean;
   tab: string;
+  query = '';
  
 
   constructor(
@@ -29,6 +34,7 @@ export class NoteComponent implements OnInit, OnDestroy {
     public auth: AuthenticationService,
     private api: ApiService,
     public utils: UtilsService,
+    public fs: FilterSortService,
     private title: Title) { }
 
   ngOnInit() {
@@ -69,6 +75,10 @@ export class NoteComponent implements OnInit, OnDestroy {
   private _setPageTitle(title: string) {
     this.pageTitle = title;
     this.title.setTitle(title);
+  }
+
+  searchNotes() {
+    this.filteredNotes = this.fs.search(this.noteList, this.query, '_id', 'mediumDate');
   }
 
   ngOnDestroy() {

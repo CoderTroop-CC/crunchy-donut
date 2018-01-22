@@ -16,7 +16,7 @@ export class ApiService {
     return `Bearer ${localStorage.getItem('access_token')}`;
   }
 
- // GET list of public, future notes
+ // GET list of public notes
  getNotes$(): Observable<NoteModel[]> {
   return this.http
     .get(`${ENV.BASE_API}notes`)
@@ -80,7 +80,7 @@ deleteNote$(id: string): Observable<any> {
 // POST new comment (login required)
 postComment$(comment: CommentModel): Observable<CommentModel> {
   return this.http
-    .post(`${ENV.BASE_API}comment/new`, comment, {
+    .post(`${ENV.BASE_API}note/${noteId}/comments/new`, comment, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     })
     .catch(this._handleError);

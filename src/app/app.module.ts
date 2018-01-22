@@ -11,7 +11,7 @@ import { NoteModule } from './pages/note/note.module';
 import { AppComponent } from './app.component';
 import { SplashComponent } from './pages/splash/splash.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CommentsComponent } from './pages/comments/comments.component';
+import { CommentsComponent } from './pages/note/comments/comments.component';
 import { UserNoteComponent }   from './pages/user-note/user-note.component';
 
 

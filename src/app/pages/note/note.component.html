@@ -14,7 +14,7 @@
               Details</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'comment'}" [ngClass]="{'active': utils.tabIs(tab, 'comment')}">
+            <a class="nav-link" [routerLink]="[]" [queryParams]="{tab: 'comments'}" [ngClass]="{'active': utils.tabIs(tab, 'comments')}">
               Comments</a>
           </li>
         </ul>
@@ -22,8 +22,8 @@
 
       <!-- note detail tab -->
       <app-note-detail *ngIf="utils.tabIs(tab, 'details')" [note]="note"></app-note-detail>
-
-      <app-comments *ngIf="utils.tabIs(tab, 'comment')" [noteId]="note._id"></app-comments>
+      <!-- note comments tab -->
+      <app-comments *ngIf="utils.tabIs(tab, 'comments')" [noteId]="note._id"></app-comments>
     </div>
   </ng-template>
 
