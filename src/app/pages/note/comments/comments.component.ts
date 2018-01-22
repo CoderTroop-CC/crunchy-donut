@@ -33,16 +33,12 @@ export class CommentsComponent implements OnInit, OnDestroy {
   showFormText = 'Show Comment Form';
 
   constructor(
-    private route: ActivatedRoute,
     public auth: AuthenticationService,
     private api: ApiService,
     public utils: UtilsService,
     public fs: FilterSortService) { }
 
   ngOnInit() {
-    this.routeSub = this.route.params.subscribe(params => {
-      this.noteId = params['noteId'];
-    });
     this._getComments();
     this.toggleEditForm(false);
   }
