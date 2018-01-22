@@ -225,7 +225,7 @@ module.exports = function(app, config) {
 
     
   // create a new comment
-  app.post('/api/note/:noteId', jwtCheck, (req, res) => {
+  app.post('/api/comment/new', jwtCheck, (req, res) => {
     Comment.findOne(req.params.id, (err, existingComment) => {
       if (err) {
         return res.status(500).send({message: err.message});
