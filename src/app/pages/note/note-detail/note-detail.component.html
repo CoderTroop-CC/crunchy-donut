@@ -2,7 +2,10 @@
     <h2 class="card-title text-center">Note Details</h2>
     <p *ngIf="note.content" class="card-block lead">{{note.content}}</p>
     
-    <button class="card-footer text-right small"><a [routerLink]="['/note/update/', note._id]">Edit</a></button>
+    <!-- need to correct to only show edit button when user email and note user email match -->
+    <div *ngIf="note.content" class="card-footer text-right small">
+        <button class="card-footer text-right small"><a [routerLink]="['/note/update/', note._id]">Edit</a></button>
+    </div>
 </div>
   
   
