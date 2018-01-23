@@ -80,7 +80,7 @@ deleteNote$(id: string): Observable<any> {
 // POST new comment (login required)
 postComment$(comment: CommentModel,): Observable<CommentModel> {
   return this.http
-    .post(`${ENV.BASE_API}comment/new`, comment, {
+    .post(`${ENV.BASE_API}note/:noteId/comments`, comment, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     })
     .catch(this._handleError);

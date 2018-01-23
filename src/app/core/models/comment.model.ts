@@ -2,7 +2,7 @@ import { EmailValidator } from "@angular/forms/src/directives/validators";
 
 class CommentModel {
     constructor(
-        public userId: string,
+        //public userId: string,
         public noteId: string,
         public userEmail: string,
         public content: string,
@@ -12,7 +12,7 @@ class CommentModel {
 
 class FormCommentModel {
     constructor(
-        public userId: string,
+        //public userId: string,
         public noteId: string,
         public userEmail: string,
         public content: string,

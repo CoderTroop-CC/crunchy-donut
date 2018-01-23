@@ -225,15 +225,14 @@ module.exports = function(app, config) {
 
     
   // create a new comment
-  app.post('/api/comment/new', jwtCheck, (req, res) => {
-    Comment.findOne(req.params.id, (err, existingComment) => {
+  app.post('/api/note/:noteId/comments', jwtCheck, (req, res) => {
+    /*Comment.findOne(req.params.noteId, (err, existingComment) => {
       if (err) {
         return res.status(500).send({message: err.message});
-      }
+      }*/
       const comment = new Comment({
-        userId: auth.profile.userId,
         noteId: req.body.noteId, 
-        userEmail: auth.profile.email,
+        userEmail: req.body.userEmail,
         content: req.body.content
       });
       comment.save((err) => {
@@ -243,7 +242,7 @@ module.exports = function(app, config) {
         res.send(comment);
       });
     });
-  });
+  //});
 
   // update note comment by id
   app.put('/api/note/:noteid/comments/:id/edit', jwtCheck, (req, res) => {

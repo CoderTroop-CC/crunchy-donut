@@ -34,7 +34,7 @@
   <!-- user email -->
     <div class="form-group">
       <label for="email">Email:</label>
-      <input id="email" type="text" class="form-control" formControlName="email">
+      <input id="email" type="text" class="form-control" formControlName="email" value="{{auth.userProfile?.name}}">
       <div *ngIf="formErrors.email" class="small text-danger formErrors" [innerHTML]="formErrors.email">
       </div>
     </div>

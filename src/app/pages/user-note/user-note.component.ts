@@ -4,7 +4,7 @@ import { AuthenticationService }        from './../../auth/authentication.servic
 import { ApiService }                   from './../../core/api.service';
 import { UtilsService }                 from './../../core/utils.service';
 import { FilterSortService }            from './../../core/filter-sort.service';
-import { ActivatedRoute }                from '@angular/router';
+import { ActivatedRoute }               from '@angular/router';
 import { Subscription }                 from 'rxjs/Subscription';
 import { NoteModel }                    from './../../core/models/note.model';
 

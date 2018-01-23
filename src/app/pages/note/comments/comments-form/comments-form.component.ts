@@ -44,12 +44,12 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
  private _setFormComment() {
     if (!this.isEdit) {
       // create new comment
-      return new FormCommentModel(null, null, null, null);
+      return new FormCommentModel(this.noteId, null, null);
     } else {
       // If editing an existing Comment,
       // create new CommentModel from existing data
       return new FormCommentModel(
-        this.comment.userId,
+        //this.comment.userId,
         this.comment.noteId,
         this.comment.userEmail,
         this.comment.content
