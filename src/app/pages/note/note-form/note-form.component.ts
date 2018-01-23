@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthenticationService } from './../../../auth/authentication.service';
 import { ApiService } from './../../../core/api.service';
 import { NoteFormService } from './note-form.service';
 import { NoteModel, FormNoteModel } from './../../../core/models/note.model';
@@ -15,29 +16,40 @@ import { NullAstVisitor } from '@angular/compiler';
 })
 
 export class NoteFormComponent implements OnInit, OnDestroy {
+
   @Input() note: NoteModel;
   isEdit: boolean;
-  // FormBuilder form
   noteForm: FormGroup;
-  // Model storing initial form values
   formNote: FormNoteModel;
-  // Form validation and disabled logic
   formErrors: any;
   formChangeSub: Subscription;
-  // Form submission
   submitNoteObj: NoteModel;
   submitNoteSub: Subscription;
   error: boolean;
   submitting: boolean;
   submitBtnText: string;
+  routeSub: Subscription;
+  commentsSub: Subscription;
+  userEmail: string;
+  //noteId: string;
 
-  constructor( private fb: FormBuilder, private api: ApiService, public nf: NoteFormService, private router: Router) { }
+  constructor( 
+    private route: ActivatedRoute,
+    private fb: FormBuilder, 
+    public auth: AuthenticationService,
+    private api: ApiService, 
+    public nf: NoteFormService, 
+    private router: Router) { }
 
   ngOnInit() {
     this.formErrors = this.nf.formErrors;
     this.isEdit = !!this.note;
     this.submitBtnText = this.isEdit ? 'Update Note' : 'Create Note';
+    this.commentsSub = this.route.params.subscribe(params => {
+      this.userEmail = params['email'];
     this.formNote = this._setFormNote();
+  })
+    
     this._buildForm();
   }
 
