@@ -30,7 +30,7 @@ export class NoteFormComponent implements OnInit, OnDestroy {
   submitBtnText: string;
   routeSub: Subscription;
   commentsSub: Subscription;
-  userEmail: string;
+  email: string;
   //noteId: string;
 
   constructor( 
@@ -46,7 +46,7 @@ export class NoteFormComponent implements OnInit, OnDestroy {
     this.isEdit = !!this.note;
     this.submitBtnText = this.isEdit ? 'Update Note' : 'Create Note';
     this.commentsSub = this.route.params.subscribe(params => {
-      this.userEmail = params['email'];
+      this.email = params['email'];
     this.formNote = this._setFormNote();
   })
     

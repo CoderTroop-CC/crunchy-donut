@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ApiService } from './../../../../core/api.service';
 import { CommentModel, FormCommentModel } from './../../../../core/models/comment.model';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommentsFormService } from './comments-form.service';
 
 
@@ -20,6 +20,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
   @Input() noteId: string;
   @Input() comment: CommentModel;
   isEdit: boolean;
+  routeSub: Subscription;
   commentForm: FormGroup;
   formComment: CommentModel;
   formErrors: any;
@@ -31,14 +32,23 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
   submitBtnText: string;
   error: boolean;
 
-  constructor( private fb: FormBuilder, private api: ApiService, public cf: CommentsFormService, private router: Router, private auth: AuthenticationService ) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private fb: FormBuilder, 
+    private api: ApiService, 
+    public cf: CommentsFormService, 
+    private router: Router, 
+    private auth: AuthenticationService ) { }
 
   ngOnInit() {
     this.formErrors = this.cf.formErrors;
     this.isEdit = !!this.comment;
     this.submitBtnText = this.isEdit ? 'Update Comment' : 'Create Comment';
-    this.formComment = this._setFormComment();
-    this._buildForm();
+    this.routeSub = this.route.params.subscribe(params => {
+      this.noteId = params['id'];
+      this.formComment = this._setFormComment();
+      this._buildForm();
+    });
   }
 
  private _setFormComment() {
@@ -61,7 +71,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
     this.commentForm = this.fb.group({
       userId: this.auth.userProfile.sub,
       noteId: this.noteId,
-      userEmail: this.auth.userProfile.email,
+      email: this.auth.userProfile.email,
       content: [this.formComment.content, [
         Validators.required
       ]]
@@ -105,8 +115,8 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
   private _getSubmitObj() {
     
     return new CommentModel(
-      this.commentForm.get('noteId').value,
-      this.commentForm.get('userEmail').value,
+      this.noteId,
+      this.commentForm.get('email').value,
       this.commentForm.get('content').value,
       this.comment ? this.comment._id : null
     );
@@ -138,7 +148,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
       this.error = false;
       this.submitting = false;
       // Redirect to note detail
-      this.router.navigate(['/note', res._id]);
+      this.router.navigate(['/note', res.noteId]);
     }
   
     private _handleSubmitError(err) {

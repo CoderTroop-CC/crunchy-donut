@@ -12,14 +12,14 @@
         <h4 class="card-title text-center">Comment Form</h4>
       </div>
       <div class="card-block">
-        <app-comments-form [noteId]="noteId" (submitComment)="onSubmitComment($note)"></app-comments-form>
+        <app-comments-form [id]="id" (submitComment)="onSubmitComment($note)"></app-comments-form>
       </div>
 
     </section>
     
   </ng-template>
 
-  <!-- All Commentss -->
+  <!-- All Comments -->
   
     <div class="card-block">
       <h3 class="card-title text-center">All Comments</h3>
@@ -28,7 +28,7 @@
 
     <ul *ngIf="comments.length" class="list-group list-group-flush">
       <li *ngFor="let comment of comments" class="list-group-item medium">
-        <strong>{{comment.email}} : </strong> <p class="d-flex w-100"><em>{{comment.content}}</em></p>
+        <strong>{{comment.userEmail}} : </strong> <p class="d-flex w-100"><em>{{comment.content}}</em></p>
       </li>
     </ul>
 

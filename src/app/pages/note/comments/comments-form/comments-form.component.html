@@ -3,7 +3,7 @@
     <!-- Content -->
     <div class="form-group">
 
-      <label for="content"><strong id="userEmail">{{auth.userProfile?.name}}</strong> enter your comment below :</label>
+      <label for="content"><strong id="email">{{auth.userProfile?.email}}</strong> enter your comment below :</label>
       <textarea id="content" class="form-control" rows="3" formControlName="content" [maxlength]="cf.descMax"></textarea>
       
       <div *ngIf="formErrors.content" class="small text-danger formErrors" [innerHTML]="formErrors.content"></div>

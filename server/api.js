@@ -232,7 +232,7 @@ module.exports = function(app, config) {
       }*/
       const comment = new Comment({
         noteId: req.body.noteId, 
-        userEmail: req.body.userEmail,
+        userEmail: req.body.email,
         content: req.body.content
       });
       comment.save((err) => {
@@ -242,7 +242,7 @@ module.exports = function(app, config) {
         res.send(comment);
       });
     });
-  //});
+
 
   // update note comment by id
   app.put('/api/note/:noteid/comments/:id/edit', jwtCheck, (req, res) => {

@@ -34,7 +34,7 @@
   <!-- user email -->
     <div class="form-group">
       <label for="email">Email:</label>
-      <input id="email" type="text" class="form-control" formControlName="email" value="{{auth.userProfile?.name}}">
+      <input id="email" type="text" class="form-control" formControlName="email" placeholder="{{auth.userProfile?.name}}">
       <div *ngIf="formErrors.email" class="small text-danger formErrors" [innerHTML]="formErrors.email">
       </div>
     </div>
@@ -43,7 +43,7 @@
     <div class="form-group">
       <button type="submit" class="btn btn-primary" [attr.disabled]="noteForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
 
-      <!--<app-submitting *ngIf="submitting"></app-submitting>-->
+      <app-submitting *ngIf="submitting"></app-submitting>
       <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
   
       <!-- API submission error -->
