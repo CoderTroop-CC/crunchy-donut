@@ -85,7 +85,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
     // If Comment matching user ID is already
     // in Comment array, set as initial comment
     const _initialUserComment = this.comments.filter(comment => {
-        return comment.userEmail === this.auth.userProfile.sub;
+        return comment.email === this.auth.userProfile.name;
       })[0];
 
     // If user has not commented before and has made

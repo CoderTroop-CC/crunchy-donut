@@ -61,7 +61,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
       return new FormCommentModel(
         //this.comment.userId,
         this.comment.noteId,
-        this.comment.userEmail,
+        this.comment.email,
         this.comment.content
       );
     }
@@ -71,7 +71,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
     this.commentForm = this.fb.group({
       userId: this.auth.userProfile.sub,
       noteId: this.noteId,
-      email: this.auth.userProfile.email,
+      email: this.auth.userProfile.name,
       content: [this.formComment.content, [
         Validators.required
       ]]

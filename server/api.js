@@ -226,10 +226,6 @@ module.exports = function(app, config) {
     
   // create a new comment
   app.post('/api/note/:noteId/comments', jwtCheck, (req, res) => {
-    /*Comment.findOne(req.params.noteId, (err, existingComment) => {
-      if (err) {
-        return res.status(500).send({message: err.message});
-      }*/
       const comment = new Comment({
         noteId: req.body.noteId, 
         userEmail: req.body.email,
@@ -244,7 +240,7 @@ module.exports = function(app, config) {
     });
 
 
-  // update note comment by id
+  // update note comment by id - future
   app.put('/api/note/:noteid/comments/:id/edit', jwtCheck, (req, res) => {
     Comment.findById(req.params.id, (err, comment) => {
       if (err) {
@@ -266,6 +262,7 @@ module.exports = function(app, config) {
     });
   });
 
+  //future
   app.delete('/api/note/:noteid/comments/:id', jwtCheck, adminCheck, (req, res) => {
     Comment.findById(req.params.id, (err, comment) => {
       if (err) {

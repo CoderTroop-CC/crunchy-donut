@@ -4,7 +4,7 @@ class CommentModel {
     constructor(
         //public userId: string,
         public noteId: string,
-        public userEmail: string,
+        public email: string,
         public content: string,
         public _id?: string
       ) { }
@@ -14,7 +14,7 @@ class FormCommentModel {
     constructor(
         //public userId: string,
         public noteId: string,
-        public userEmail: string,
+        public email: string,
         public content: string,
         public _id?: string
     ) { }
