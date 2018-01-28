@@ -38,7 +38,7 @@ export class CommentsFormComponent implements OnInit, OnDestroy {
     private api: ApiService, 
     public cf: CommentsFormService, 
     private router: Router, 
-    private auth: AuthenticationService ) { }
+    public auth: AuthenticationService ) { }
 
   ngOnInit() {
     this.formErrors = this.cf.formErrors;
