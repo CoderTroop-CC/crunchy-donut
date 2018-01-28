@@ -28,7 +28,7 @@
 
     <ul *ngIf="comments.length" class="list-group list-group-flush">
       <li *ngFor="let comment of comments" class="list-group-item medium">
-        <strong>{{comment.userEmail}} : </strong> <p class="d-flex w-100"><em>{{comment.content}}</em></p>
+        <strong>{{comment.email}} : </strong> <p class="d-flex w-100"><em>{{comment.content}}</em></p>
       </li>
     </ul>
 
