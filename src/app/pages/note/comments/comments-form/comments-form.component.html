@@ -4,7 +4,7 @@
     <div class="form-group">
 
       <label for="content"><strong id="email">{{auth.userProfile?.name}}</strong> enter your comment below :</label>
-      <textarea id="content" class="form-control" rows="3" formControlName="content" [maxlength]="cf.descMax"></textarea>
+      <textarea id="content" class="form-control" rows="3" formControlName="content" ></textarea>
       
       <div *ngIf="formErrors.content" class="small text-danger formErrors" [innerHTML]="formErrors.content"></div>
       

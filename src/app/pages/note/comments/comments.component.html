@@ -12,7 +12,7 @@
         <h4 class="card-title text-center">Comment Form</h4>
       </div>
       <div class="card-block">
-        <app-comments-form [id]="id" (submitComment)="onSubmitComment($note)"></app-comments-form>
+        <app-comments-form [id]="noteId" (submitComment)="onSubmitComment()"></app-comments-form>
       </div>
 
     </section>
