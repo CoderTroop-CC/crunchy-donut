@@ -1,3 +1,5 @@
+Figured this would be a good place for taking notes while working on the app - bugs, features we need, ideas, etc
+
 ----------------------------------------------
 ##                  TODO                    ##
 ----------------------------------------------
