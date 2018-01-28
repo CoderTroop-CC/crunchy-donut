@@ -148,7 +148,7 @@ module.exports = function(app, config) {
       note.title = req.body.title;
       note.content = req.body.content;
       note.email = req.body.email;
-      note.public = req.body.public;
+      note.publicView = req.body.publicView;
 
       note.save(err => {
         if (err) {
