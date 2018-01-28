@@ -228,8 +228,9 @@ module.exports = function(app, config) {
   app.post('/api/note/:noteId/comments', jwtCheck, (req, res) => {
       const comment = new Comment({
         noteId: req.body.noteId, 
-        userEmail: req.body.email,
-        content: req.body.content
+        email: req.body.email,
+        content: req.body.content,
+
       });
       comment.save((err) => {
         if (err) {
