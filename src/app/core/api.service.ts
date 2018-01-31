@@ -68,7 +68,7 @@ editNote$(id: string, note: NoteModel): Observable<NoteModel> {
     .catch(this._handleError);
 }
 
-// DELETE existing Note and all associated comments (admin only)
+// DELETE existing Note
 deleteNote$(id: string): Observable<any> {
   return this.http
     .delete(`${ENV.BASE_API}note/${id}`, {

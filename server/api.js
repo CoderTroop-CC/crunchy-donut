@@ -159,7 +159,7 @@ module.exports = function(app, config) {
     });
   });
 
-  // DELETE note
+  // DELETE note & Comments
   app.delete('/api/note/:id', jwtCheck, (req, res) => {
     Note.findById(req.params.id, (err, note) => {
       if (err) {
@@ -168,19 +168,23 @@ module.exports = function(app, config) {
       if (!note) {
         return res.status(400).send({message: 'Note not found.'});
       }
-      Comment.find({noteId: req.params.id}, (err, comments) => {
-        if (comments) {
-          comments.forEach(comment => {
-            comments.remove();
-          });
+      note.remove(err => {
+        if (err) {
+          return res.status(500).send({message: err.message});
         }
-        note.remove(err => {
-          if (err) {
-            return res.status(500).send({message: err.message});
-          }
-          res.status(200).send({message: 'Note and comments successfully deleted.'});
-        });
+        res.status(200).send({message: 'Note and comments successfully deleted.'});
       });
+    });
+    Comment.find({noteId: req.params.id}, (err, comments) => {
+      if(err) {
+        return res.status(500).send({message: err.message});
+      }
+      if (!comments) {
+        return res.status(400).send({message: "comments not found."});
+      }
+      comments.forEach(comments => {
+          comments.remove();
+      });   
     });
   });
 
