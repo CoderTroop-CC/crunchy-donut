@@ -160,7 +160,7 @@ module.exports = function(app, config) {
   });
 
   // DELETE note
-  app.delete('/api/note/:id', jwtCheck, adminCheck, (req, res) => {
+  app.delete('/api/note/:id', jwtCheck, (req, res) => {
     Note.findById(req.params.id, (err, note) => {
       if (err) {
         return res.status(500).send({message: err.message});

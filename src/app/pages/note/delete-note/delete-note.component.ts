@@ -29,8 +29,8 @@ export class DeleteNoteComponent implements OnDestroy {
           this.submitting = false;
           this.error = false;
           console.log(res.message);
-          // If successfully deleted note, redirect to Admin
-          this.router.navigate(['/admin']);
+          // If successfully deleted note, redirect to dashboard
+          this.router.navigate(['/dashboard']);
         },
         err => {
           console.error(err);
