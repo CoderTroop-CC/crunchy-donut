@@ -1,0 +1,66 @@
+Figured this would be a good place for taking notes while working on the app - bugs, features we need, ideas, etc
+
+----------------------------------------------
+##                  TODO                    ##
+----------------------------------------------
+
+-Bugs
+
+
+-Features
+    Navigation Menu
+        Add back navigation button
+        Should close on mouseOut
+    Comments
+        Show time comment was created
+    Add delete button for note owner to detail view
+
+----------------------------------------------
+##                  Ideas                   ##
+----------------------------------------------
+
+-Add icons to button labels
+    Use icons only for mobile layout
+    Change 'Hide Comment Form' to X icon/'Cancel'
+    Change 'Show Comment Form' to plus icon/'New'
+
+-Add count baloon to comments tab
+    Red for new comments, blue for no new comments
+
+-Only use 'Get Started' view for short introduction to app
+
+    Add checkbox for 'Show on login'
+    Once checked, future logins redirect to user notes or 'Dashboard'
+
+-Add Social Login
+    Google
+    GitHub
+    StackOverflow
+
+-Add User Profile View
+    About/Bio
+    Avatar/Photo
+    Nickname
+    Delete Account
+    Email
+    Social logins
+
+-Add Menu Items
+    Report a bug
+    Contact the developers
+    Theme/fonts
+    Background photo
+
+-User Avatars
+    Provided by social logins or default
+    Add a small collection of avatars assignable in a profile view
+
+-Comments
+    Add user menu to comments
+        Hide comment
+        Report comment
+        'Like' comment 
+            notify comment ower of 'like' activity
+        See public notes by this user (creator of comment)
+    Add 'Like' counter
+    Sub-threads for comments ie: comments on comments

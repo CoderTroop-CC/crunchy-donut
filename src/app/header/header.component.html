@@ -1,0 +1,36 @@
+<header id="header" class="header">
+  
+  <div class="header-page bg-success">
+    <a *ngIf="auth.loggedIn" class="toggle-offcanvas bg-success" (click)="toggleNav()"><span></span></a>
+    <h1 class="header-page-siteTitle"><a routerLink="/">RA Notes</a></h1>
+  </div>
+  
+  
+
+  <nav id="nav" class="nav" role="navigation">
+    <ul class="nav-list">
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Public Notes</a>
+      </li>
+      <li>
+        <a *ngIf="auth.loggedIn" routerLink="/note/note/new" routerLinkActive="active">
+          Create Note</a>
+      </li>
+      <li>
+        <a *ngIf="auth.loggedIn" routerLink="/userNotes/{{auth.userProfile?.name}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          User Notes</a>
+      </li>
+    </ul>
+  </nav>
+  
+  
+  <div class="header-page-authStatus">
+    <a *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</a>
+    <span *ngIf="auth.loggedIn">
+      {{auth.userProfile?.name}} <span class="opacity-half">|</span> <a (click)="auth.logout()">Log Out</a>
+    </span>
+  </div>
+
+
+</header>

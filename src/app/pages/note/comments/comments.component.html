@@ -1,0 +1,42 @@
+  <!--<app-loading *ngIf="loading"></app-loading>-->
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <ng-template [ngIf]="comments">
+
+    <div class="card-block text-right">
+      <button (click)="toggleShowForm()" class="btn btn-link btn-sm">{{showFormText}}</button>
+    </div>
+
+    <section class="form" *ngIf="showForm" [@expandCollapse]>
+      <div class="card-block">
+        <h4 class="card-title text-center">Comment Form</h4>
+      </div>
+      <div class="card-block">
+        <app-comments-form [id]="noteId" (submitComment)="onSubmitComment()"></app-comments-form>
+      </div>
+
+    </section>
+    
+  </ng-template>
+
+  <!-- All Comments -->
+  
+    <div class="card-block">
+      <h3 class="card-title text-center">All Comments</h3>
+      <p *ngIf="!comments.length" class="lead">There are currently no comments for this note.</p>
+    </div>
+
+    <ul *ngIf="comments.length" class="list-group list-group-flush">
+      <li *ngFor="let comment of comments" class="list-group-item medium">
+        <strong>{{comment.email}} : </strong> <p class="d-flex w-100"><em>{{comment.content}}</em></p>
+      </li>
+    </ul>
+
+  <!-- Error loading commentss -->
+  <div *ngIf="error" class="card-block">
+    <p class="alert alert-danger">
+      <strong>Oops!</strong> There was an error retrieving comments for this note.
+    </p>
+  </div>
+</ng-template>
+

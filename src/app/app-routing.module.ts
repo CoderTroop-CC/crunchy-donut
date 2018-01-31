@@ -1,28 +1,28 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent }   from './dashboard/dashboard.component';
-import { NoteDetailComponent }  from './note-detail/note-detail.component';
-import { NoteAddComponent }     from './note-add/note-add.component';
-import { NoteSearchComponent }  from './note-search/note-search.component';
+import { SplashComponent }        from './pages/splash/splash.component';
+import { DashboardComponent }   from './pages/dashboard/dashboard.component';
+import { CallbackComponent }    from './pages/callback/callback.component';
+import { UserNoteComponent }   from './pages/user-note/user-note.component';
 
 //login and authentication
-import { LoginComponent }       from './login/login.component';
-import { RegisterComponent }    from './register/register.component';
-import { AuthGuard }            from './auth-guard';
+import { AuthGuard }            from './auth/auth-guard';
+import { AdminGuard }           from './auth/admin.guard';
+
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'detail/:id', component: NoteDetailComponent },
-  { path: 'addNote', component: NoteAddComponent },
-  { path: 'noteSearch', component: NoteSearchComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '**', redirectTo: '' }
+  { path: '', component: SplashComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'note', loadChildren: './pages/note/note.module#NoteModule', canActivate: [AuthGuard]},
+  { path: 'callback', component: CallbackComponent },
+  { path: 'userNotes/:email', component: UserNoteComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [ AuthGuard, AdminGuard ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {} 

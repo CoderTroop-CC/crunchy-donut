@@ -1,0 +1,54 @@
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" type="text" class="form-control" formControlName="title" [maxlength]="nf.titleMax">
+      <div *ngIf="formErrors.title" class="small text-danger formErrors" [innerHTML]="formErrors.title">
+      </div>
+    </div>
+  
+    <!-- View Public -->
+    <div class="form-group">
+      <label class="label-inline-group">Add note to public view?</label>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+          <input id="publicView-yes" type="radio" class="form-check-input" [value]="true" formControlName="publicView"> Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+          <input id="publicView-no" type="radio" class="form-check-input" [value]="false" formControlName="publicView"> No
+        </label>
+      </div>
+      <div *ngIf="formErrors.publicView" class="small text-danger formErrors" [innerHTML]="formErrors.publicView">
+      </div>
+    </div>
+  
+    <!-- Content -->
+    <div class="form-group">
+      <label for="content">Note Content:</label>
+      <textarea id="content" class="form-control" rows="4" formControlName="content" [maxlength]="nf.descMax"></textarea>
+      <div *ngIf="formErrors.content" class="small text-danger formErrors" [innerHTML]="formErrors.content">
+      </div>
+    </div>
+  <!-- user email -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" type="text" class="form-control" formControlName="email" placeholder="{{auth.userProfile?.name}}">
+      <div *ngIf="formErrors.email" class="small text-danger formErrors" [innerHTML]="formErrors.email">
+      </div>
+    </div>
+  
+    <!-- Submit -->
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [attr.disabled]="noteForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
+
+      <app-submitting *ngIf="submitting"></app-submitting>
+      <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
+  
+      <!-- API submission error -->
+      <p *ngIf="error" class="mt-3 alert alert-danger">
+        <strong>Error:</strong> There was a problem submitting the note. Please try again.
+      </p>
+    </div>
+  </form>

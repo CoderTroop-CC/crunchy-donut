@@ -1,37 +1,31 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-//fake backend for testing notes
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-
-//fake backend for testing login/registration
-import { fakeBackendProvider } from './fake-backend';
-
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //routing
 import { AppRoutingModule } from './app-routing.module';
-
+import { CoreModule } from './core/core.module';
+import { NoteModule } from './pages/note/note.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NoteDetailComponent } from './note-detail/note-detail.component';
-import { NoteSearchComponent } from './note-search/note-search.component';
-import { MessagesComponent } from './messages/messages.component';
-import { NoteAddComponent } from './note-add/note-add.component';
-import { AlertComponent } from './alert/alert.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component'
+import { SplashComponent } from './pages/splash/splash.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CommentsComponent } from './pages/note/comments/comments.component';
+import { UserNoteComponent }   from './pages/user-note/user-note.component';
+
 
 //services and helpers
-import { NoteService } from './note.service';
-import { MessageService } from './message.service';
-import { AuthGuard } from './auth-guard';
 import { JwtInterceptor } from './jwt-interceptor';
-import { AlertService } from './alert.service';
-import { UserService } from './user.service';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from './auth/authentication.service';
+import { CallbackComponent } from './pages/callback/callback.component';
+
+import { AuthGuard } from './auth/auth-guard';
+import { AdminGuard } from './auth/admin.guard';
+//import { AdminComponent } from './pages/admin/admin.component';
+import { NoteFormService } from './pages/note/note-form/note-form.service';
+import { SubmittingComponent } from './core/submitting.component';
+
 
 
 @NgModule({
@@ -40,40 +34,30 @@ import { AuthenticationService } from './authentication.service';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NoteModule,
+    CoreModule.forRoot()
   ],
+
   declarations: [
     AppComponent,
     DashboardComponent,
-    NoteDetailComponent,
-    MessagesComponent,
-    NoteSearchComponent,
-    NoteAddComponent,
-    AlertComponent,
-    LoginComponent,
-    RegisterComponent
+    CallbackComponent,
+    //AdminComponent,
+    UserNoteComponent,
+    SplashComponent,
+    SubmittingComponent,
   ],
+  
   providers: [
-    NoteService,
-    MessageService,
-    AuthGuard,
-    AlertService,
     AuthenticationService,
-    UserService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    },
+    Title,
+    AuthGuard,
+    AdminGuard,
+    NoteFormService
 
-    // provider used to create fake backend
-    fakeBackendProvider
+    
   ],
   bootstrap: [AppComponent]
 })
