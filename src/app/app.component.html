@@ -2,8 +2,9 @@
   <div class="layout-canvas" [ngClass]="{'nav-open': navOpen, 'nav-closed': !navOpen}" [style.min-height]="minHeight">
 
     <!-- HEADER -->
-    <app-header (navToggled)="navToggledHandler($event)"></app-header>
-
+    <ng-template [ngIf]="auth.userProfile">
+      <app-header (navToggled)="navToggledHandler($event)"></app-header>
+    </ng-template>
     <!-- CONTENT -->
     <div id="layout-view" class="layout-view">
       <router-outlet></router-outlet>
